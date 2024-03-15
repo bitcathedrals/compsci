@@ -1,0 +1,10 @@
+* compsci - explorations in computer science
+
+This is a repository of my various explorations of computer science. It contains a mix
+of languages and files across the spectrum of my experience.
+
+I tend to favor python and lisp, though there are examples of other languages as well.
+I hope it is entertaining, even if for a short while.
+
+- programming
+  - [[file:src/heap_sort/doc.org::*heap sort][heap sort]]

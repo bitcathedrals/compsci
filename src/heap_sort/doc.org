@@ -16,7 +16,6 @@ I checked many of the usual places online
 - Wikipedia Heap Sort [[cite:&nil]]
 - MIT Introduction to Algorithms [[cite:&nil]]
 
-
 I wrote two programs, a number generator, and a heap sort
 implemented in three variations.
 
