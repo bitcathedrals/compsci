@@ -1,9 +1,7 @@
 #+LATEX_CLASS article
 
-#+TITLE: Philosophy of Code
+#+TITLE: Evolution of Code
 #+AUTHOR: Michael Mattie
-
-#+bibliography: code.bib
 
 * Schools of Thought
 
