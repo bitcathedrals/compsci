@@ -1,4 +1,5 @@
 #+LATEX_CLASS: article
+
 #+TITLE: Problem Solving with Algorithms
 #+AUTHOR: Michael Mattie
 
@@ -6,7 +7,6 @@
 
 #+BEGIN_CENTER
 *Correct Thinking leads to correct Code!*
-*Michael Mattie (codermattie@gmail.com)*
 #+END_CENTER
 
 * Correctness
@@ -26,101 +26,187 @@ combined into a disaster.
 Read further for a template that can design techincal algorithms
 or business logic, in other words design at any scale.
 
-** Definitions
+* Design Process
 
-- Behavior – STATE & CLARIFY
-- Inputs – STATE & CLARIFY
-- do – effects in state or behavior
-- return – answers in computational results - types and scale
+** Definition
 
-- Definition – paradigm and design from Behavior & Inputs
-- Scenarios – All of the expectations of the program based on Behavior and Inputs
+- SCENARIOS – The context that defines the CASES and BEHAVIOR
+- BEHAVIOR – State & Clarify
+- INPUTS – State & Clarify
+- RETURN – answers in computational results - types and scale
+- CHANGE – effects in state or behavior
+
+** Design (Iteration)
+
+- Come up with CASES to test ideas
+- Conduct thought experiments, Give up on bad ideas quickly 
+- maximize idempotent side-effect free functions (API) [[cite:&SICPcostOfAssignment]]
+- Objects represent state (modality)
+- Functions are isolated, minimal sharing of state between functions (API)
 
 ** Paradigm (Comprehension)
 
-Paradigm is what model is best suited to framing the problem (UI,
-System Design, Data Flow, Query/Relational, REST.
+Paradigm is what model is best suited to framing the problem (dynamic
+greedy, lazy, streams, Relational, divide and conquer.
 
- Use Case, Sequence, UML) spot check the model to see if it adequately
-describes the problem. Find the model that underlies the Solution.
+Spot check the model to see if it adequately describes the
+problem. Find the model that underlies the Solution.
 
-** Design
+*** Recursion
 
-- Conduct thought experiments, Give up on bad ideas quickly Manage
-  complexity of solution and code
-- Identify essential state (objects) - maximize idempotent side-effect free functions (API)
-- Sketch the code in functions, loops, with comments on purpose and O-notation complexity
-- Decide what techniques will be used to optimize and implement the
-  algorithm: dynamic, recursion, linguistic (DSL), query, logic,
-  single pass, multi-pass, pre-compute, multi-process)
+\begin{equation}
+\theta(\log_n)
+\end{equation}
 
-** ALGORITHM – scenarios, objects, functions, and loops
+- recurrence: distill the problem down into a solution that can be applied to
+  all the elements.
+- termination: define the base case or *termination* as return of the solution
+  that unwinds the recursion.
+- traverse: define the traverse of the problem set.
 
-- Objects represent state (modality)
-- Functions represent idempotent computations (API)
+Recursion is a powerful technique however it is rarely used in stack
+based lanugages due to the fact that deep traverses can blow a fixed
+length stack.
 
-** Code Sketch
+*** Divide & Conquer
 
-- INITIALIZE: establish a return value, empty containers over nulls
-- TERMINATE - determine the base case. When is it done?
-- FIRST, MIDDLE, LAST Cases
-- CORNER cases 
-- Input validation: System errors, stale state, deadlocks, and sync errors, timeouts
-- INVARIANTS – statements always true in the procedure’s execution
-- State - initialize, update, delete
+Divide and Conquer is a technique where the problem is dived into parts,
+each part is solved, and then the sub-solutions are combined into
+the complete solution.
 
-** SOLUTION MODELS
+\begin{equation}
+\theta (n * \log_n)
+\end{equation} 
 
-- RECURSION – n*logx(n) {where x is the partition size}
-- REDUCE: to the recurrence of the essence. Recurse to the depth of the solution data structures, never to the input
-- Define: TERMINATION as return combining the recurrence with the recursive call
-- SOLVE: the problem by computing part of the problem
+- Divide the problem into $n/x$ parts.
+- Solve each part
+- Combine the solutions for the final solution
 
-- DIVIDE & CONQUER – n*logx(n) {where x is the partition size}
-- DIVIDE the problem into n/x parts.
-- SOLVE each part
-- COMBINE the solutions for the final solution
+*** dynamic
 
-Parts of the problem must not be interdependent.
+Dynamic Programming uses a technique of caching answers to frequently
+computed problems.
 
-*** DYNAMIC PROGRAMMING
+Memoization[[cite:&IntroMemoization]] is a powerful technique and
+in Python the "functools" package has a LRU [[cite:&IntroLRU]]
+
+*** linguistic (DSL)
+
+DSL Stands for Domain Specific Languages. Thes can be simple
+declarative language processors, or full blown domain specific
+languages like "R" [[cite:&WikiR]].
+
+*** query
+
+Query Languages like SQL can go beyond transactional into the space of
+analytical queries either providing processing of data, or even
+computations such as "GROUP BY" and MIN and MAX in SQL [[cite:&WikiSQL]].
+
+The underlying model behind relational databases is the Relational
+Algebra [[cite:&codd2021relational]]
+
+*** logic
+
+Logic systems are basically rule systems like Prolog [[cite:&WikiProlog]]
+They are used in mathematical and logic applications. Their solution
+finding approach can also be useful in solving difficult problems like
+cross-wiring network links for redundancy and expert systems.
+
+*** single pass
+
+Single pass approaches are significant when the data set is so large it
+cannot be contained in memory. These kinds of problems are becoming
+more important as the size of data in general skyrockets.
+
+*** multi-pass
+
+Sometimes huge gains can be made by making multiple passes. This is
+basically a variant on Dynamic Programming. A good example is database
+indexes. When data is queried the location can be found quickly in
+the index instead of a full table scan.
+
+Sorting ahead of time is another example, making possible a Binary
+Search technique.
+
+*** pre-compute
+
+Pre-Computing is not like multi-pass in that the complete problem
+set is traversed, rather it is the compilation of tables that
+are expensive to compute. In the early days of computing the
+computation of sine/cosine and other graphic operations
+were prohibitely expensive. 
+
+Since the answers were a small table pre-computing the results of the
+equations greatly sped up programs. Bitmaps were even compiled to
+machine code for faster rendering.
+
+*** multi-process
+
+There is an entire field of programming dedicated to muli-process
+computing. It is based upon parallel computation which is currently in
+vouge due to the large number of cores on CPU's and the use of
+massively parallel dedicated chips like video cards.
+
+It's even possible to crack passwords, and do machine learning, and
+mine crypto currencies on dedicated chips.
+
+*** Dynamic Programming
 
 Applied to recursion is descent + memoization recursively can be no
 cycles in the DAG of the recursion, or it will get into an infinite
 loop. It ss fundamentally a brute force approach good for computing
 min/max style answers.
 
-*** GREEDY PROGRAMMING
+*** Greedy Programming
 
-Packing algorithms, like the parser compiler function packer
+Packing algorithms, like the parser compiler function packer.
+My Emacs Parser Compiler used a greedy technique with
+push back to maximally fill functions with code [[cite:&MattieParser]].
 
-*** LAZY PROGRAMMING
+
+*** Lazy Programming
 When the computation may not be needed
 When the problem cannot fit into memory it can be lazy loaded as needed
 
-*** STREAMS
 
-A finite sequence of discrete elements of the same type processed in a
-linear way. Good for representing large data sets coming out of
-storage.
+*** Streams 
 
-*** DATA STRUCTURES
+Streams [[cite:&SICPstreams]] are a finite sequence of discrete elements
+of the same type processed in a linear sequence of operations. Good
+for representing large data sets coming out of storage.
 
-**** ARRAY
+* Sketch the Code
+
+Sketch the code in functions, loops, with comments on purpose and
+O-notation complexity
+
+- *Initialize*: establish a return value, empty containers over nulls
+- *Terminate*: determine the base case. When is it done?
+- *First, Common, Last Cases*: The basic sequence of the algorithm
+- *Corner*: cases 
+- *Input Validation*: System errors, stale state, deadlocks, and sync errors, timeouts
+- *Invariants*: statements always true in the procedure’s execution
+- *State*: initialize, update, delete [[cite:&SICPcostOfAssignment]]
+
+Parts of the problem must not be interdependent.
+
+* Data Structures
+
+** Array
 
 Typed and RAM indexed they are extremely fast with O(1) read for any
 element Insert is very slow as the array elements have to be copied to
 make room for the element allows the use of fast algorithms like
 binary search
 
-**** LIST
+** List
 
 single or double linked for traverse forward and traverse back, fast
 inserts can only efficiently access in a linear way random access is
-O(n) counting length is 0(n) double linking requires twice as much
-overhead
+$\theta(n)$ counting length is 0(n) double linking requires twice as
+much overhead
 
-**** TREES
+** Trees
 
 good for storing hierarchal data natural fit for recursive algorithms
 good for indexes requires only O logx(n) to find an element.
@@ -129,23 +215,24 @@ Performance is maintained only when the tree is balanced, re-balancing
 on insert can be an expensive operation recursion is practical to the
 logarithmic complexity of traversal
 
-**** STACK
+** Stack
 
 Stacks are an excellent structure for back-tracking problems. they
 are LIFO.
 
-**** LIFO (Last in First out) 
+** LIFO (Last in First out) 
 
 push on the end, pop by removing from end. Fast implementation in
 arrays.
 
-**** QUEUE FIFO (First in First out)
+** QUEUE FIFO (First in First out)
 
 Good for processing in chronological ordering Can be used to do a
 breadth traversal of a tree
 
-**** HASHES:
+** Hashes
 
 A bread and butter data structure used pervasively to look up
-non-integer keys in O(1) complexity.
+non-integer keys in $\theta(1)$ complexity.
 
+#+print_bibliography:
