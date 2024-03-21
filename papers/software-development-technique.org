@@ -3,7 +3,11 @@
 #+TITLE: Philosophy of Code
 #+AUTHOR: Michael Mattie
 
-* Rapid Delivery of Effective Software
+* Philosophy of Code
+
+#+BEGIN_CENTER
+/Missing the target is the slowest way to win/
+#+END_CENTER
 
 Rapid development of effective software requires the knowledge and
 experience to design, implement, and improve software technology.
@@ -16,28 +20,21 @@ dime.
 At Gauge Security we believe in delivery of quality implementation,
 innovation, automation, and deadlines. With our processes, ideas, and
 tooling our investors spend money on ROI, not rewrites of code built
-like a wood shack in a winter of funds.
+like a wood shack assembled from shingles.
 
-* Design, Process, and Tooling
+* Experience
 
 Our Design Process is derived from extensive experience working
 for fortune 10/100 Corporations:
 
+- ToolBuilders (Static Analysis of C, Large Scale C++)
+- OpenEye (Agile, Distributed Version Control)
 - Cobalt/ADP (Enterprise Scale Datbase Ingest)
-- Disney (Rapid Python Development]
+- Disney (Rapid Python Development)
 - Comcast (System Integration/Micro-Service Platform Architecture)
 - Oracle (Cloud BackPlane/Security/AAA)
-- Amazon 1 (Mission Critical Network mapping)
+- Amazon 1 (Global Network Capacity Mapping and Visulization)
 - Amazon 2 (AWS Security for Capital One)
-
-Along with my Experience I have a priceless skillset:
-
-- I can turn books into capabilities
-
-Being able to both learn and apply has allowed me to develop skillsets
-far beyond what is usually encountered in school or work experience.
-
-My section *"My Readings"* covers a range of my influences.
 
 * System Design
 
@@ -49,43 +46,55 @@ System Design is a crucial aspect of building effective and flexible
 systems that can be modified and enhanced without rewrites of
 monolithic codebases.
 
-My major influence is the UNIX command line. Utilizing a standard
-format for data interchange, and highly configurable and focuses
-components it is possible to achieve astounding power over data and
-the system.
+My major influence is the UNIX command line. Utilizing a standard data
+interchange format; highly configurable and focused components with
+composition make it possible to achieve astounding power and
+automation.
 
-Many poor designs revolve around slapping together a database with a
-monolithic app driving the process. Despite this falling out of favor
-with a large number of services driven by application integration
-tools like:
-
-- AWS SQS
-- AWS SNS
-
-Many systems discard this component architecture for speed, or find a
-lack of integration tools with on-site development.
-
-Let's see how we can stand on the shoulders of giants and get
-it right from the get-go.
+Conversely many poor designs revolve around slapping together a
+database shouldering a massive monolithic app. Despite this falling
+out of favor with Micro-Service architecture and Application
+Integration architecture huge monoliths are still stood up today -
+especially for "1.0" implementations.
 
 * System Design - Modern Architecture 
 
 #+BEGIN_CENTER
-*/Imagine & Conceive/*
+*/One bulls-eye is luck, three is skill/*
 #+END_CENTER
 
 Vision is a declaration of goals and refinement of the business
 language nouns and verbs that delineates and articulates the scope,
 functions, and parameters of the solution.
 
+Being able to build something that resembles the vision, and doing it
+over and over again - requires a process. A method for doing it right
+every time.
+
+In the trades when you need precision you make a "jig". A measuring
+stick, or frame for cutting the peices or spacing out pieces. Every
+time you measure you get a different measurement. A jig is the same
+in every instance.
+
+For example if you are spacing rows for a machine to go down, and the
+end of the tape has 1/16" play, then after 16 rows your off almost, or
+a full inch. Deal Breaker. (This actually happened)
+
+In programming terms if you fail to forsee all the issues in the
+design process, or make structural mistakes in implementation you
+could face serious anomolies in the timeline, leading to delayed
+deliveries, penalties, and possibly canning of projects or lost
+clients.
+
+** RUP (Rational Unified Process)
+
 Rational Unified Process is the high level view of the development
 process. This is a fully iterative approach, which can work if the
 entities (which are deepest rooted dependencies) are encapsulated
 inside services that pass well defined and simple messages.
 
-** RUP (Rational Unified Process)
-
-A process framework defining a staged delivery to expose issues as early as possible.
+A process framework defining a staged delivery to expose issues as
+early as possible.
 
 - Inception - make a initial evaluation to determine the cost and
   value of the project, decide to proceed to elaboration. It should
@@ -97,125 +106,141 @@ A process framework defining a staged delivery to expose issues as early as poss
 -	Construction - complete the implementation of the Use Cases.
 -	Transition - Final release work not in the scope of continuous delivery.
 
-System Language is where concepts are identified, if there is a
+Domain Language is where concepts are identified, if there is a
 troublesome area use language to pinpoint, dissect, and and illuminate
 the concepts or stumbling blocks of a design.
 
-System Domain is the practice of distilling a vision description down
-into the essential components and features of a successful system that
-will leave a legacy of: eleganance, aesthetic, pragmatically useful
-and maintainable system.
+Designing is the practice of distilling a vision description down into
+the essential components and features of a successful system that will
+leave a legacy of: eleganance, aesthetic, pragmatically useful, and a
+maintainable system.
 
 ** Design
 
 #+BEGIN_CENTER
-*/“Interrelation between use and model”/*
+*/“Weeks of Coding can save hours of Planning”/*
 #+END_CENTER
 
-Perfect minimalism, wise selection of mechanism and the
-interconnection. Simplicity of design gives emergent behavioral
-complexity from first principles.
+Simplicity of design is first principles, the insights into the Domain
+that emerge when the problem and it's solution are fully conceived.
 
-Underlying the rich landscape of the problem is the solution’s
-essential truth in the USE/Model. Design is the tight feedback loop
-between the learning and revising the USE/Model and validating it by
-writing integration tests.
+This is expressed in the CASE/DOMAIN iteration process that is
+learning and refinement in nature, not a scribbling of ideas, but
+testing and stretching them to see if they fit the problem.
 
-The tests exercise the API’s and mockups of internal logic verify that
-the needs of the internal logic are met by the API’s.
-
-
-** USE CASE/DOMAIN Splitting
+*** USE CASE/DOMAIN Splitting
 
 USE cases are designed as sequence diagrams showing the interaction
-between the user and the system. Each USE case interaction with the
-system has a correlation identifier that identifies the case as it
-propagates through the system. Service Domains can signal other
-Service Domains in a intra-domain vocabulary.
+between the user, the system, and the problem. The user interacts with
+the system, and the system interacts with the problem - or DOMAIN.
 
 *** Roles
 
-Roles are built as state machines. Each state consists of a set of
-messages that can be sent from that mode. Each response from the
+System Roles are built as state machines. Each state consists of a set
+of messages that can be sent from that mode. Each response from the
 system or choice by the performed by the user, or change in state is a
 potential transition to another mode.
 
-Each mode is represented by a ticket, with the messages as sub-tasks.
+In planning Each service is a board, each mode is represented by a
+ticket, and the messages as sub-tasks.
 
 *** Messages
 
-Messages are transitive immutable entities, passed between componets.
-They are indicated by italic UML objects in the domain file, and in
-the system file they are simply named.
+Messages are transitive immutable entities, passed between components.
+They are in a Data Catalog which is a documentation of all the
+messages in a layer (we will get to layers later...).
 
 *** Entities
+
+#+BEGIN_CENTER
+/It's not coming back! That's the problem! - Jason Bourne, The Bourne Identity/
+#+END_CENTER
 
 Entities are persistent state with a cohesive, complete, and minimal
 set of attributes. They are refined by normalization where the
 identity of the Entity acts as the “key” to apply normalization.
 
-In the domain file It is represented in UML as a bolded type, and can
-have a integrity label below in angle brackets. Integrity labels
-indicate the set of entities required to create, update, and
-delete cohesively.
+Entities never appear in the layer definitions as they are always
+encapsulated by services.
 
-*** Service Domain Factoring
+** Summary
 
-System components with related “knows about” topic relationships are
-gathered into Service Domains that consume and produce messages in
-that topic.
+The design process doesn't have to be slow. If it is slow then it won't be
+used. Look at tools like markdown, plantuml, and mindmapping tools to rapidly
+evolve and iterate over a design.
 
-Each domain becomes a column in the sequence diagram. Each Service
-Domain has its own description file.
+If it's slow it's because your tools involve too much fiddling with
+format or layout. Design docs can be ugly at first. 
 
-** System Vocabulary & Catalog
+If you need to make it more presentable at the end you can always take
+your ugly but correct design, and cut & paste it into a pretty
+tool. Conversely you don't want to design in a pretty tool and write
+ugly code.
 
-#+BEGIN_CENTER
-*/“Systemic seperation of concerns”/*
-#+END_CENTER
+* Implementation
 
-System layers shared across domains and the Data Fabric consisting of
-the combined vocabularies of the domains are combined into a single
-view.
+Implementation is not a straight to code path, it involves a second
+phase of design, in this case the model, layers, and carving out the
+services on cohesive encapsulation lines.
 
-This view is a cohesive map of MESSAGES, ENTITIES, and API
-are represented as a UML package with the name of the Service in
-bold.
-
-Roles are described as one or more messages, entities, and API's
-involved in operations drawn in ovals.
-
-** Implementation
+** Service Factoring
 
 #+BEGIN_CENTER
-*/“The Right Way is the shortest path to success”/*
+*/“Systemic Seperation of Concerns”/*
 #+END_CENTER
 
-*** Layers
+Components falling under the same “knows about” topic are gathered
+into a Service Domain that encapsulates the topic. It produces and
+consumes messages that soley reference entities and functions within
+it's topic.
 
-- Not the domain layer
-- Responsible for coordinating the domain as tasks, system interfaces,
-  service integrations, user interface, and parallelism if any. This
-  layer is kept as thin as possible.
+In a sequence diagram of the messaging between the services each
+service has a column.
 
-- Domain representation
- - Representation of business concepts and rules through entities,
-   components, roles, and messages. Largely concerned with persistent
-   state, function, and decomposition.
- - Extremely loose coupling with the Application Layer and the Core layer.
+** Layers
 
-- Technical Core
- - Implementation of processes and technical capabilities
- - The technical details of system support, service integrations, storage.
- - Purely technical factors such as performance, scaling, security,
-   authentication, and configuration
+System layers are defined by a data catalog and structure shared
+across the components and services. If it comes from the same data
+catalog it's in the same layer. Different catalog, different layer.
 
-** Principles
+*** App Layer
+
+The app layer is responsible for all the library, compotent, and
+service integrations, initialization, error handling, and shutdown.
+
+*** Domain Layer
+
+The Domain Layer should be a structure encompassing the full breadth
+of the problem, and use Lazy Programming to keep a working set in
+memory.
+
+The Domain layer is focused on representation, and it's components are
+focused on traversing, filtering, and mapping the Problem Space.
+
+The Domain layer should fit on everything from a laptop for development,
+to pyspark clusters for large scale data processing.
+
+The structure of the Domain Layer should represent the real world
+relationships between the pieces of data. 
+
+A good example is the MacOS device model which has representations in
+a network graph for connectivity and in planes such as power
+management. Querying the device model is by passing a dictionary of
+attributes providing encapsulation.
+
+*** Technical Core
+
+The Technical Layer ties into both the Application Layer and the
+Domain Layer to provide the Business Logic and the technnical
+capabilities of the system.
+
+* Principles
+
 #+BEGIN_CENTER
-*/“Principles are wisdom that end in a  Pyrrhic victory when discarded”/*
+*/Principles are wisdom that when discarded produce a Pyrrhic victory/*
 #+END_CENTER
 
-*** Twelve Factor App
+** Twelve Factor App
 
 -	One Code Base in Version Control (This can be decomposed into
   multiple repostories with advanced tooling composition
@@ -257,24 +282,24 @@ involved in operations drawn in ovals.
   REPL’s to do admin tasks, glue together dashboards out of ssh calls
   and log parsing
 
-*** Tests as Contracts
+** Tests as Contracts
 
-- Integration Tests as contracts - tests should reflect actual useful
-  scenarios and not simply exercise coverage but miss the point. Test
-  the expected behavior of the interfaces on one level and the
-  implementation on another.
+Integration Tests as contracts - tests should reflect actual useful
+scenarios and not simply exercise coverage but miss the point. Test
+the expected behavior of the interfaces on one level and the
+implementation on another.
 
-  Refactoring the implementation can change the implementation tests;
-  but the interface tests should remain unchanged. 
+Refactoring the implementation can change the implementation tests;
+but the interface tests should remain unchanged.
 
-  To make it organized, and even possible to auto-generate docs from
-  the Unit Test code, make a Test suite for each interface scenario
-  being tested.
+To make it organized, and even possible to auto-generate docs from the
+Unit Test code, make a Test suite for each interface scenario being
+tested.
 
-  Documentation should briefly describe what the behavior of the
-  mode, and the circumstances and types of the errors.
+Documentation should briefly describe what the behavior of the mode,
+and the circumstances and types of the errors.
 
-*** Outsourcing
+** Outsourcing
 
 Outsource anything outside of the Core Domain to libraries and
 services vastly accelerating development and the creation of value.
@@ -284,13 +309,13 @@ especially if it is in another technical domain.
 Beware of dependency hell by choosing libraries and services with
 extremely mature API’s with minimal sub-dependencies. 
 
-*** submodules vs. packages
+** submodules vs. packages
 
 Pull the sources for outsourcing into the repositories as sub-modules
 and build packages into your own package repository so that the source
 for the entire system is preserved.
 
-*** Side-Effect Free
+** Side-Effect Free
 
 Side Effect Free Functions: as many functions as possible should
 return a result, and have no other effect upon subsequent calls,
@@ -299,14 +324,14 @@ or alter the outcomes of other function.
 This simplifies analysis, understanding, and eliminates vast numbers
 of diﬃcult to solve.
 
-*** Assertions
+** Assertions
 
 Assertions are Invariants that are like probes into the heart of the
 design and the code. Well stated is single invariants or as Hoare
 predicate transformers stating the pre and post conditions of the
 function.
 
-*** Simplify Associations
+** Simplify Associations
 
 Simplify Associations: Reduce connections and cardinality complexity
 of relationships with constraints and layers found in deeper
@@ -319,29 +344,14 @@ abstracts storage quirks from the Technical Core layer.
 Stored Procedures enforce locking and return denormalized rows 
 for compound objects.
 
-*** Factories are functions or boxes with
+** Factories
 
-underlined names that create, update, retrieve entities, or create
-complex or polymorphic objects. If the factory is for a object with
-persistent storage zero args should create, one argument should write
-the object, and keyword args should query for a existing object.
+Factories create complex or polymorphic objects. If the factory is for
+a object with persistent storage zero args should create a new object
+and keyword args should query for a existing object.
 
-
-** Summary
-
-The Design principles can actually be developed quickly with things
-like MarkDown and other shorthand systems that can generate docs
-quickly.
-
-The only thing that requires manual fiddling is diagrams which should
-be sparse considering how much labor they require. One rapid tool for
-creating diagrams is mind mapping which is a very good approach for
-quickly diagramming.
-
-Don't ever think that these steps are formality with some value at
-best, they are the thinking part of design, and the rules of the road
-for implementation. Without them the result is often a coding spree
-run amok, not a deliverable.
+Factories excel at encapsulating integrations and API's for components
+like databases, and REST API's.
 
 * My Readings
 
