@@ -1,56 +1,120 @@
 #+LATEX_CLASS: article
 
-#+TITLE: Problem Solving with Algorithms
+#+TITLE: Algorithms: Design and Implementation
 #+AUTHOR: Michael Mattie
 
-* Problem Solving with Algorithms
+* Algorithms: Design and Implementation
 
 #+BEGIN_CENTER
 *Correct Thinking leads to correct Code!*
 #+END_CENTER
 
-* Correctness
+Algorithms, even the ones that seem simple can be very difficult to
+design and implement. Purely technical algorithms frequently have
+mistakes in them until they have been debugged over a significant
+period of time. Business Logic algorithms are unique to the domain
+and there is little guidance to help the developer.
 
-Not all algorithms require a major effort to get a correct
-result. However these algorithms that are trivial are almost entirely
-of a purely technical aspect with a narrow effect on the program.
+The biggest failing is not one of coding, but rather a failure of
+imagination to conceive of all the scenarios that the algorithm
+is executed in. Not realizing that a list might be empty, or
+a input not supplied can wreck an algorithm.
 
-The algorithms that deal with Business Problems on the other hand
-are unique to the Problem Domain and can be very difficult to
-get right, and mistakes can ripple throughout the implementation.
-
-In these cases where the blast radius is high a rigorous approach can
-save a project weeks or more of endless tweaking and ad-hoc testing
-combined into a disaster.
-
-Read further for a template that can design techincal algorithms
-or business logic, in other words design at any scale.
-
-* Design Process
+We will go through a systematic process that is a discovery processs,
+discovering all the ways the algorithm will be used and stretched. The
+code is intuitive once all the facets of the problem domain have been
+discovered.
 
 ** Definition
 
-- SCENARIOS – The context that defines the CASES and BEHAVIOR
-- BEHAVIOR – State & Clarify
-- INPUTS – State & Clarify
-- RETURN – answers in computational results - types and scale
-- CHANGE – effects in state or behavior
+Defining your goals, your problem, and clearly stating your
+assumptions will do more for your design process than any other
+step. Your code reflects your assumptions more than your skill in most
+cases.
+
+*** SCENARIOS – The context of CASES and EXPECTATIONS
+#+BEGIN_CENTER
+/State & Clarify/
+#+END_CENTER
+
+Scenarios are: (Inputs, Expections, Outputs). The Inputs and Outputs
+are the CASES of the algorithm - the EXPECTATIONS are what the
+agorithm should do in that Scenario. Usually it is a "result", but it
+can include side-effects: changing the environment.
+
+It is important to ask questions and clarify these scenarios. They are
+the foundations of the entire process and a mistake here will ripple
+all the way to implementation in a very costly way.
+
+*** BEHAVIOR
+#+BEGIN_CENTER
+/State & Clarify/
+#+END_CENTER
+
+BEHAVIOR is the actions that lead to the EXPECTATIONS being met by the
+algorithm. It is vital to clarify the behavior and make sure it covers
+all facets of the environment, cases, and results.
+
+It is important to clarify behavior because if it doesnt thread
+through the scenarios it will result in a broken implementation.
+
+*** INPUTS – State & Clarify
+
+The type, scale, and possible anomolies in the inputs to the algorithm
+have a huge impact on the algorithm. Designing something for one
+thousand elements is a very different from designing for one million
+elements. A thousand will fit easily to memory, a million elements is
+a different design entirely.
+
+*** RETURN – answers in computational results - types and scale
+
+The types and results that EXPECTATIONS requires are crucial to the
+design process. Early in the computation the assembly of output should
+begin.
+
+*** CHANGE – effects in state or behavior
+
+Sometimes the algorithm must make a change in the environment. This
+is less-desirable from a design and implementation standpoint but
+if it is the EXPECTATION then it must be done well.
+
+If a change must be made it is best to make the algorithm idempotent,
+or where repeated calls have the same result. For example: a light
+button as a toggle will turn on/off the lights every time it's
+pressed. A switch or paddle pressed "off" will result in off every
+time. That is idempotent.
 
 ** Design (Iteration)
 
-- Come up with CASES to test ideas
-- Conduct thought experiments, Give up on bad ideas quickly 
-- maximize idempotent side-effect free functions (API) [[cite:&SICPcostOfAssignment]]
-- Objects represent state (modality)
-- Functions are isolated, minimal sharing of state between functions (API)
+*** CASES and Experiments
+
+Brainstorm the different CASES in the context of an
+environment. Conduct thought experiments, Give up on bad ideas
+quickly. See if the CASES enumerate all the scenarios, how common they
+are: common case, corner case.
+
+*** maximize idempotent side-effect free functions (API) [[cite:&SICPcostOfAssignment]]
+
+Breakdown the cases into functions, and try and maximize side-effect free
+idempotent functions. Where there is state handle it carefully defining
+the entire life-cycle of the state.
+
+*** Functions are isolated, minimal sharing of state between functions (API)
+
+Try and avoid cross-connection between functions, so they can be
+tested in isolation and more easily understood than tangled functions.
 
 ** Paradigm (Comprehension)
 
-Paradigm is what model is best suited to framing the problem (dynamic
-greedy, lazy, streams, Relational, divide and conquer.
+At this point you should have a collection of functions, with a
+description of the part they play in the algorithm. Next is paradigm.
 
-Spot check the model to see if it adequately describes the
-problem. Find the model that underlies the Solution.
+Paradigm is what model best describes the problem (dynamic
+greedy, lazy, streams, Relational, divide and conquer) and
+most efficiently produces an answer.
+
+Spot check the paradigm against the CASES to see if it adequately
+describes the problem. Find the right paradigm.
 
 *** Recursion
 
@@ -58,31 +122,39 @@ problem. Find the model that underlies the Solution.
 \theta(\log_n)
 \end{equation}
 
-- recurrence: distill the problem down into a solution that can be applied to
-  all the elements.
-- termination: define the base case or *termination* as return of the solution
-  that unwinds the recursion.
-- traverse: define the traverse of the problem set.
+**** recurrence
+distill the problem down into a solution that can be applied to all
+the elements.
 
-Recursion is a powerful technique however it is rarely used in stack
-based lanugages due to the fact that deep traverses can blow a fixed
-length stack.
+**** termination
+
+define the base case or *termination* as return of the solution that
+unwinds the recursion.
 
 *** Divide & Conquer
 
-Divide and Conquer is a technique where the problem is dived into parts,
-each part is solved, and then the sub-solutions are combined into
-the complete solution.
+Divide and Conquer is a technique where the problem is dived into
+parts, each part is solved, and then the sub-solutions are combined
+into the complete solution.
 
 \begin{equation}
 \theta (n * \log_n)
 \end{equation} 
 
-- Divide the problem into $n/x$ parts.
-- Solve each part
-- Combine the solutions for the final solution
+**** Divide the problem into $n/x$ parts.
 
-*** dynamic
+Decide the granularity of the division.
+
+****  Solve each part
+
+Solve the sub-problem.
+
+**** Combine the solutions for the final solution
+
+With each sub-problem solved combine the solutions into a final
+solution.
+
+*** Dynamic
 
 Dynamic Programming uses a technique of caching answers to frequently
 computed problems.
@@ -90,13 +162,15 @@ computed problems.
 Memoization[[cite:&IntroMemoization]] is a powerful technique and
 in Python the "functools" package has a LRU [[cite:&IntroLRU]]
 
-*** linguistic (DSL)
+*** Linguistic (DSL)
 
-DSL Stands for Domain Specific Languages. Thes can be simple
+DSL stands for Domain Specific Languages. Thes can be simple
 declarative language processors, or full blown domain specific
-languages like "R" [[cite:&WikiR]].
+languages like "R" [[cite:&WikiR]]. They can be used to define complex
+problems and organize the problem into something more easily solved,
+like a parse tree.
 
-*** query
+*** Query
 
 Query Languages like SQL can go beyond transactional into the space of
 analytical queries either providing processing of data, or even
@@ -105,130 +179,124 @@ computations such as "GROUP BY" and MIN and MAX in SQL [[cite:&WikiSQL]].
 The underlying model behind relational databases is the Relational
 Algebra [[cite:&codd2021relational]]
 
-*** logic
+*** Logic
 
 Logic systems are basically rule systems like Prolog [[cite:&WikiProlog]]
 They are used in mathematical and logic applications. Their solution
 finding approach can also be useful in solving difficult problems like
 cross-wiring network links for redundancy and expert systems.
 
-*** single pass
+*** Single Pass
 
-Single pass approaches are significant when the data set is so large it
-cannot be contained in memory. These kinds of problems are becoming
+Single pass approaches are significant when the data set is so large
+it cannot be contained in memory. These kinds of problems are becoming
 more important as the size of data in general skyrockets.
 
-*** multi-pass
+*** Multi-Pass
 
 Sometimes huge gains can be made by making multiple passes. This is
-basically a variant on Dynamic Programming. A good example is database
-indexes. When data is queried the location can be found quickly in
-the index instead of a full table scan.
+basically a variant on Dynamic Programming. Database Indexes. When
+data is queried the location can be found quickly in the index instead
+of a full table scan.
 
 Sorting ahead of time is another example, making possible a Binary
 Search technique.
 
-*** pre-compute
+*** Pre-Compute
 
-Pre-Computing is not like multi-pass in that the complete problem
-set is traversed, rather it is the compilation of tables that
-are expensive to compute. In the early days of computing the
-computation of sine/cosine and other graphic operations
-were prohibitely expensive. 
+Pre-Computing unlike multi-pass where the complete problem
+set is traversed, is instead the compilation of tables that
+are expensive to compute. 
 
-Since the answers were a small table pre-computing the results of the
-equations greatly sped up programs. Bitmaps were even compiled to
-machine code for faster rendering.
+In the early days of computing the computation of sine/cosine and
+other graphic operations were prohibitely expensive.
 
-*** multi-process
+Since the answers were a small table pre-computing the equations
+greatly sped up programs. Bitmaps were even compiled to machine code
+for faster rendering.
+
+*** Multi-Process
 
 There is an entire field of programming dedicated to muli-process
 computing. It is based upon parallel computation which is currently in
-vouge due to the large number of cores on CPU's and the use of
+vouge, due to the large number of cores on CPU's and the use of
 massively parallel dedicated chips like video cards.
 
-It's even possible to crack passwords, and do machine learning, and
-mine crypto currencies on dedicated chips.
+It's even possible to crack passwords, do machine learning, and mine
+crypto currencies on dedicated chips.
 
 *** Dynamic Programming
 
-Applied to recursion is descent + memoization recursively can be no
+Applied to recursion is (descent + memoization) recursively can be no
 cycles in the DAG of the recursion, or it will get into an infinite
-loop. It ss fundamentally a brute force approach good for computing
+loop. It is fundamentally a brute force approach, good for computing
 min/max style answers.
 
 *** Greedy Programming
 
-Packing algorithms, like the parser compiler function packer.
-My Emacs Parser Compiler used a greedy technique with
+Greedy algorithms, like the parser compiler packer function I wrote
+in my Emacs Parser Compiler used a greedy technique with
 push back to maximally fill functions with code [[cite:&MattieParser]].
 
-
 *** Lazy Programming
-When the computation may not be needed
-When the problem cannot fit into memory it can be lazy loaded as needed
 
+When the computation may not be needed or when the problem cannot fit
+into memory it can be lazy loaded, or lazy computed.
 
 *** Streams 
 
 Streams [[cite:&SICPstreams]] are a finite sequence of discrete elements
-of the same type processed in a linear sequence of operations. Good
-for representing large data sets coming out of storage.
+of the same type processed in a linear sequence of operations. They
+are produced by a generator function which allows a subset of the
+stream to be computed.
 
 * Sketch the Code
 
 Sketch the code in functions, loops, with comments on purpose and
 O-notation complexity
 
-- *Initialize*: establish a return value, empty containers over nulls
-- *Terminate*: determine the base case. When is it done?
-- *First, Common, Last Cases*: The basic sequence of the algorithm
-- *Corner*: cases 
-- *Input Validation*: System errors, stale state, deadlocks, and sync errors, timeouts
-- *Invariants*: statements always true in the procedure’s execution
-- *State*: initialize, update, delete [[cite:&SICPcostOfAssignment]]
-
-Parts of the problem must not be interdependent.
+1. *Initialize*: establish a return value, empty containers over nulls
+2. *Terminate*: determine the base case. When is it done?
+3. *First, Common, Last Cases*: The basic sequence of the algorithm
+4. *Corner*: cases 
+5. *Input Validation*: System errors, stale state, deadlocks, and sync errors, timeouts
+6. *State*: initialize, update, delete [[cite:&SICPcostOfAssignment]]
 
 * Data Structures
 
 ** Array
 
-Typed and RAM indexed they are extremely fast with O(1) read for any
-element Insert is very slow as the array elements have to be copied to
-make room for the element allows the use of fast algorithms like
-binary search
+Typed and indexed they are extremely fast with O(1) read/write for any
+element. Insert is very slow as the array elements have to be copied
+to make room for each insertion. The equal cost of access to any
+element makes algorithms like binary search, and some sorting
+algorithms possible.
 
 ** List
 
-single or double linked for traverse forward and traverse back, fast
-inserts can only efficiently access in a linear way random access is
-$\theta(n)$ counting length is 0(n) double linking requires twice as
-much overhead
+Single or Double Linked lists have efficient inserts but perform
+poorly in most cases.
+
+Counting length or adding to end is $\theta(n)$
 
 ** Trees
 
-good for storing hierarchal data natural fit for recursive algorithms
-good for indexes requires only O logx(n) to find an element.
+Good for storing hierarchal data and a natural fit for recursive
+algorithms, trees require only $\theta \log_n$ to find an element.
 
 Performance is maintained only when the tree is balanced, re-balancing
-on insert can be an expensive operation recursion is practical to the
-logarithmic complexity of traversal
+on insert can be an expensive operation.
 
-** Stack
+** Stack/LIFO (Last in First out) 
 
-Stacks are an excellent structure for back-tracking problems. they
-are LIFO.
-
-** LIFO (Last in First out) 
-
-push on the end, pop by removing from end. Fast implementation in
-arrays.
+Stacks are an excellent structure for back-tracking problems. They
+are LIFO, or Last In First Out. They can be used as a substitute
+for recursion, and generally for back-tracking.
 
 ** QUEUE FIFO (First in First out)
 
-Good for processing in chronological ordering Can be used to do a
-breadth traversal of a tree
+Good for processing in chronological order. It can also be used for
+a breadth traversal of a tree.
 
 ** Hashes
 
