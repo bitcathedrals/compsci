@@ -37,10 +37,12 @@ cases.
 /State & Clarify/
 #+END_CENTER
 
-Scenarios are: (Inputs, Expections, Outputs). The Inputs and Outputs
-are the CASES of the algorithm - the EXPECTATIONS are what the
-agorithm should do in that Scenario. Usually it is a "result", but it
-can include side-effects: changing the environment.
+(Inputs, Expections, Outputs). The Inputs, Outputs, and Expectations
+are the CASES of the algorithm. The EXPECTATIONS are what the
+algorithm should do in that CASE. Scenarios are the situational and
+practical constraints surrounding the CASES. The Expectations are
+usually a "result", but it can include side-effects: changing the
+environment.
 
 It is important to ask questions and clarify these scenarios. They are
 the foundations of the entire process and a mistake here will ripple
