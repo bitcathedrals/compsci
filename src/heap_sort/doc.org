@@ -1,0 +1,42 @@
+#+LATEX_CLASS: article
+#+TITLE: Heap Sort - A Study
+#+AUTHOR: Michael Mattie
+
+* heap sort
+
+NOTE: when you see "nil" in the Markdown, it's a citation. I will
+generate and link a pdf with the citations.
+
+When I was reading a textbook on algorithms around 2017 or so I
+decided to implement a heap sort in python to see how it turned out. I
+wrote a verification routine and it turned out the algorithm was
+producing errors. [[cite:&essential]]
+
+Afterwards I decided to find out which other algorithms worked.
+
+I checked many of the usual places online
+- stack overflow [[cite:&stack]]
+- geeks for geeks [[cite:&geeks]]
+- Wikipedia Heap Sort [[cite:&wikiheap]]
+
+I wrote two programs, a number generator, and a heap sort
+implemented in three variations.
+
+- heapsort (3 implementations) [[file:heapsort.py][heapsort.py]]
+- number-generator [[file:number-generator.py][number-generator.py]]
+
+I found that nearly all the sources were wrong. They had subtle bugs
+in them that only appeared in larger sets.
+
+I determined that Wikipedia and MIT Introduction to Algorithms had the
+correct implementation was a top-down solution. The "bubble-up" bottom
+up solution from Essential Algorithms [[cite:&essential]] was wrong.
+
+I wrote my own variation and tested all of them. The source includes
+the capability to generate graphiz tree diagrams of the heap as well.
+
+This exercise clearly demonstrates the importance of testing, but also
+testing at scale to reveal bugs that don't appear in trivial tests.
+
+#+print_bibliography:
+
