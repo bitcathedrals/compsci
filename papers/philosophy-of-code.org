@@ -353,6 +353,41 @@ and keyword args should query for a existing object.
 Factories excel at encapsulating integrations and API's for components
 like databases, and REST API's.
 
+** Tests as contracts
+
+One of the main reasons why documentation is such a problem is drift,
+no one notices when the code changes, but the documentation
+doesn't. Attempts to integrate the two have been "Literate
+Programmming" by Knuth [[cite:&wikiLiterate]]
+
+The tools however were not time efficient enough due to the emphasis
+on typesetting. More recently markdown has emerged as a fast way of
+creating documents.
+
+Now there is a even better way that has evolved in Emacs. It is called
+org-mode and it allows for code blocks to be mixed with markdown like
+document syntax.
+
+Not only does it rapidly generate documentation, the code blocks can
+even be executed inside the org-mode document, or written to files.
+
+This allows for a new paradigm where the tests and the API
+documentation are the same document. The tests illustrate the API,
+verify the documentation, and "tangled" into files a test suite is
+generated.
+
+*** Structure
+
+The test-suite/API documentation has the structure of a document with
+a preamble introducing the API. Each operation in the API is a mixture
+of code and documentation. 
+
+Each Operation generates a test-suite file. In each operation test
+file the CASE's are enumerated exhaustively testing the code and
+validating the documentation.
+
+The result is a test-suite, and API documentation in sync.
+
 * My Readings
 
 Here is list of my most influential sources, with a short description
@@ -410,7 +445,7 @@ The principles are explained in a precise and lucid manner. Not a
 daily-driver for most programmers, but as a reference on cryptography
 it has no peers.
 
-** Design Patters
+** Design Patterns
 
 Design Patterns [[cite:&gamma1994design]] Definitely one of the most
 influental books on programming ever written, introducing abstract
