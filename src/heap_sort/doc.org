@@ -1,11 +1,10 @@
 #+LATEX_CLASS: article
+#+SETUPFILE: ../../retro_dark.theme
+
 #+TITLE: Heap Sort - A Study
 #+AUTHOR: Michael Mattie
 
 * heap sort
-
-NOTE: when you see "nil" in the Markdown, it's a citation. I will
-generate and link a pdf with the citations.
 
 When I was reading a textbook on algorithms around 2017 or so I
 decided to implement a heap sort in python to see how it turned out. I
@@ -15,6 +14,7 @@ producing errors. [[cite:&essential]]
 Afterwards I decided to find out which other algorithms worked.
 
 I checked many of the usual places online
+
 - stack overflow [[cite:&stack]]
 - geeks for geeks [[cite:&geeks]]
 - Wikipedia Heap Sort [[cite:&wikiheap]]
