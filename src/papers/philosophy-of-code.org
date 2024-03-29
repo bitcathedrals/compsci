@@ -5,20 +5,16 @@
 
 * Philosophy of Code
 
-#+BEGIN_CENTER
-/Missing the target is the slowest way to win/
-#+END_CENTER
-
 Rapid development of effective software requires the knowledge and
 experience to design, implement, deploy, and iterate on software
 technology.
 
 Along the way many projects ditch tooling and process for speed,
 thinking that this is the quickest way from: A -> B. The result is a
-mock-up at best that has to be rewritten on the Investor or Customer
+mock-up at best that has to be rewritten on the investor or customer
 dime.
 
-At Gauge Security we translate principles into products. Effective,
+At Gauge Security, we translate principles into products. Effective,
 reliable, and fast.
 
 We use innovations, automations, tooling, experience, and plain
@@ -27,7 +23,7 @@ hard work to deliver as promised.
 * Experience
 
 Our Design Process is derived from extensive experience working
-for fortune 10/100 Corporations:
+for Fortune 10/100 Corporations:
 
 - ToolBuilders (Static Analysis of C, Large Scale C++)
 - OpenEye (Agile, Distributed Version Control)
@@ -41,7 +37,7 @@ for fortune 10/100 Corporations:
 * System Design
 
 #+BEGIN_CENTER
-*/Vision - “building the impossible”/*
+*/Vision - “Building the Impossible”/*
 #+END_CENTER
 
 System Design is a crucial aspect of building effective and flexible
@@ -53,7 +49,7 @@ format highly configurable and narrowly scoped components are composed
 making it possible to achieve astounding power, flexibility, and
 re-use.
 
-Conversely many poor designs revolve around slapping together a
+Conversely, many poor designs revolve around slapping together a
 database that is shouldering a massive monolithic app. 
 
 Despite monolithic apps falling being replaced by Micro-Service
@@ -63,7 +59,7 @@ are still stood up today. Especially for "1.0" implementations.
 * System Design - Modern Architecture 
 
 #+BEGIN_CENTER
-*/One bulls-eye is luck, three is skill/*
+*/"One bulls-eye is luck, three is skill"/*
 #+END_CENTER
 
 Vision is a articulation of goals and a refinement of the application
@@ -71,29 +67,30 @@ scope using business language. The business case defines the scope,
 operations, and constraints of the solution.
 
 Being able to build something that resembles the vision, and doing it
-over and over again - requires a process. A method for doing it right
+over and over again requires a process. A method for doing it right
 every time.
 
-In the trades when you need precision you make a "jig". A measuring
-stick, or frame for cutting the peices or spacing out pieces. Every
-time you measure you get a different measurement. A jig is the same
-in every instance.
+When you need precision you make a "jig". A measuring stick, or frame
+for cutting the pieces or spacing out pieces. Every time you measure
+you get a different measurement. A jig is the same in every instance.
 
 For example if you are spacing rows for a machine to go down, and the
 end of the tape has 1/16" play, then after 16 rows your off near a
-full inch. Deal Breaker. (This actually happened)
+full inch.
 
 Like a jig the software development process frames every aspect of the
 development and delivery of the software. If the process is ad-hoc,
 poorly defined, or not followed you can find yourself critically off
 at the end.
 
-In programming terms, if you fail to forsee the major issues in the
-design process, make structural mistakes in implementation, or dont
-have the tooling to put into production, then you face serious
-anomolies in the timeline. This leads to delayed deliveries,
-penalties, and could result in termination of projects or lost
-clients.
+If developers fail to uncover major issues in the design process, if
+developers make structural mistakes in implementation, if developers
+don't have the tooling to reliably push into production - then you
+face serious anomalies in the timeline. 
+
+Any one of these failures can lead to delayed deliveries, penalties,
+and could ultimately result in termination of projects, reputation
+damage, or lost clients.
 
 ** RUP (Rational Unified Process)
 
@@ -428,7 +425,7 @@ Git-Flow [[cite:&flow]] Is the best of the Workflows and is tooled as
 "git-flow" on most systems.  The combination of a well thought out,
 experience driven, tooled Workflow is a huge asset to any project.
 
-** Conventional commits
+** Conventional Commits
 
 Most commit messages arise from a anarchy of practices leading
 to git logs that are difficult to understand and impossible
@@ -514,7 +511,7 @@ a teaching mechanism.
 If you learn by example, and want to deep dive into the command line
 this is the best book.
 
-** Hackers, heros of the computer algorithms
+** Hackers, Heroes of the Computer Revolution
 
 Steven Levy's [[cite:&levy2010hackers]] "Hackers" is an amazing
 presentation of the early MIT years of computer programming, personal
@@ -546,7 +543,7 @@ The Design of Every Day Things [[cite:&norman2013design]] spawned
 modern inteface design, and the rise of the product designer.
 A must read for programmers to create intuitive software.
 
-** The Soul of a new Machine
+** The Soul of a New Machine
 
 The Soul of a New Machine [[cite:&kidder1997soul]] is a great real world
 example how a small nimble team using a simple clear vision and design
