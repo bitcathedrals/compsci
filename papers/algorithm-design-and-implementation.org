@@ -32,9 +32,9 @@ assumptions will do more for your design process than any other
 step. Your code reflects your assumptions more than your skill in most
 cases.
 
-*** SCENARIOS – The context of CASES and EXPECTATIONS
+*** SCENARIOS 
 #+BEGIN_CENTER
-/State & Clarify/
+/State & Clarify/ – The context of CASES and EXPECTATIONS
 #+END_CENTER
 
 (Inputs, Expections, Outputs). The Inputs, Outputs, and Expectations
@@ -60,7 +60,10 @@ all facets of the environment, cases, and results.
 It is important to clarify behavior because if it doesnt thread
 through the scenarios it will result in a broken implementation.
 
-*** INPUTS – State & Clarify
+*** INPUTS 
+#+BEGIN_CENTER
+/State & Clarify/ - Types and Scale
+#+END_CENTER
 
 The type, scale, and possible anomolies in the inputs to the algorithm
 have a huge impact on the algorithm. Designing something for one
@@ -68,13 +71,20 @@ thousand elements is a very different from designing for one million
 elements. A thousand will fit easily to memory, a million elements is
 a different design entirely.
 
-*** RETURN – answers in computational results - types and scale
+*** RETURN  
+#+BEGIN_CENTER
+/State & Clarify/ - Types and Scale
+#+END_CENTER
+
 
 The types and results that EXPECTATIONS requires are crucial to the
 design process. Early in the computation the assembly of output should
 begin.
 
-*** CHANGE – effects in state or behavior
+*** CHANGE
+#+BEGIN_CENTER
+/State & Clarify/ - Before and After
+#+END_CENTER
 
 Sometimes the algorithm must make a change in the environment. This
 is less-desirable from a design and implementation standpoint but
@@ -95,18 +105,27 @@ environment. Conduct thought experiments, Give up on bad ideas
 quickly. See if the CASES enumerate all the scenarios, how common they
 are: common case, corner case.
 
-*** maximize idempotent side-effect free functions (API) [[cite:&SICPcostOfAssignment]]
+*** Operations (API) 
+#+BEGIN_CENTER
+Maximize Idempotent side-effect free operations [[cite:&SICPcostOfAssignment]]
+#+END_CENTER
 
 Breakdown the cases into functions, and try and maximize side-effect free
 idempotent functions. Where there is state handle it carefully defining
 the entire life-cycle of the state.
 
-*** Functions are isolated, minimal sharing of state between functions (API)
+*** Isolate Operations (API)
+#+BEGIN_CENTER
+Functions are isolated, minimal sharing of state between functions (API)
+#+END_CENTER
 
 Try and avoid cross-connection between functions, so they can be
 tested in isolation and more easily understood than tangled functions.
 
-** Paradigm (Comprehension)
+** Paradigm
+#+BEGIN_CENTER
+/Solution Comprehension/
+#+END_CENTER
 
 At this point you should have a collection of functions, with a
 description of the part they play in the algorithm. Next is paradigm.
@@ -124,24 +143,28 @@ describes the problem. Find the right paradigm.
 \theta(\log_n)
 \end{equation}
 
+Recursion is elegant and compact. In languages that support it it is
+practical as well as simple and transparent.
+
 **** recurrence
-distill the problem down into a solution that can be applied to all
+
+Distill the problem down into a solution that can be applied to all
 the elements.
 
 **** termination
 
-define the base case or *termination* as return of the solution that
+Define the base case or *termination* as return of the solution that
 unwinds the recursion.
 
 *** Divide & Conquer
 
-Divide and Conquer is a technique where the problem is dived into
-parts, each part is solved, and then the sub-solutions are combined
-into the complete solution.
-
 \begin{equation}
 \theta (n * \log_n)
 \end{equation} 
+
+Divide and Conquer is a technique where the problem is dived into
+parts, each part is solved, and then the sub-solutions are combined
+into the complete solution.
 
 **** Divide the problem into $n/x$ parts.
 
@@ -149,7 +172,8 @@ Decide the granularity of the division.
 
 ****  Solve each part
 
-Solve the sub-problem.
+Solve the sub-problem. The reduced scale of /n/ reduces the complexity
+or run time of the solution.
 
 **** Combine the solutions for the final solution
 
@@ -161,7 +185,7 @@ solution.
 Dynamic Programming uses a technique of caching answers to frequently
 computed problems.
 
-Memoization[[cite:&IntroMemoization]] is a powerful technique and
+Memoization [[cite:&IntroMemoization]] is a powerful technique and
 in Python the "functools" package has a LRU [[cite:&IntroLRU]]
 
 *** Linguistic (DSL)
@@ -289,13 +313,19 @@ algorithms, trees require only $\theta \log_n$ to find an element.
 Performance is maintained only when the tree is balanced, re-balancing
 on insert can be an expensive operation.
 
-** Stack/LIFO (Last in First out) 
+** Stack/LIFO 
+#+BEGIN_CENTER
+Last In First Out
+#+END_CENTER
 
 Stacks are an excellent structure for back-tracking problems. They
 are LIFO, or Last In First Out. They can be used as a substitute
 for recursion, and generally for back-tracking.
 
-** QUEUE FIFO (First in First out)
+** QUEUE FIFO
+#+BEGIN_CENTER
+First In First Out
+#+END_CENTER
 
 Good for processing in chronological order. It can also be used for
 a breadth traversal of a tree.
