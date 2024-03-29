@@ -21,6 +21,25 @@ sort.
 
 [[file:src/heap_sort/doc.org][Heap Sort analysis]]
 
+* systems
+
+These are the systems that I am using or recently used:
+
+- [[file:systems/apple-intel-neofetch-.png][Apple Intel]]
+- [[file:systems/openbsd-neofetch-gatekeeper.png][OpenBSD server]]
+- [[file:systems/apple-neofetch-m1.png][Apple M1]]
+- [[file:systems/openbsd-spartan-neofetch.png][OpenBSD laptop]]
+- [[file:systems/linux-neofetch-mint.png][Linux Mint Desktop]]
+- [[file:systems/ubuntu-server-cracker-neofetch.png][Ubuntu Server]]
+- [[file:systems/neofetch-work-m3.png][Apple M3]]
+
+I also have experience with:
+
+- Gentoo Linux
+- FreeBSD
+- Dragonfly BSD
+- Debian
+
 * Thanks
 
 - org-mode themes [[cite:&orgThemes]]
