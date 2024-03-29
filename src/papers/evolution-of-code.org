@@ -1,0 +1,53 @@
+#+LATEX_CLASS article
+
+#+TITLE: Evolution of Code
+#+AUTHOR: Michael Mattie
+
+* Schools of Thought
+
+There are many schools of thought in code, and many languages. Even more
+tools abound. Every tool and language promises an ascendancy to greater
+heights of productivity and clarity.
+
+Usually these promises break down into a few major advantages touted
+by that group.
+
+- faster coding
+- faster execution
+- better composition
+- error detection and prevention
+
+Not only do these features break down the promises of tools, these
+features chart the evolution of langauges and tools.
+
+** Language and Tool Evolution
+
+Faster coding is where many languages start. They demo by showing how
+few lines of code it takes to do something. Perl is the extreme
+example of the one-liner phenomena.
+
+Next the langauge evolves towards faster execution as the language
+becomes more widespread and people want to use it in scaling and
+production environment. The desire to have ease of coding in high
+performance scenarios drives optimization.
+
+Composition with libraries or packages is the next area. A community
+develops shared code and the management and deployment leads to a
+package system with a central repository.
+
+At this time the language has been developing along with it's features
+like a package system. More and more features are added until the
+simplicity and transparency of the code becomes more opaque and
+complex.
+
+Finally the last stage of evolution is an attempt to rule out bugs.
+The flexibility and plasticity of the original concept is viewed by
+coders as "naughty" and a effort to bring static type checking and
+static analysis tools buries the original expressive power under the
+jack boot of type checking and orthodoxy.
+
+The final "maturity" of the language eventually leaves the innovators
+to strike out to find a new language with the expressive power that
+was cast down by the orthodoxy of static analysis and best practices.
+
+#+print_bibliography:

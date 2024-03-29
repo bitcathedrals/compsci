@@ -1,0 +1,554 @@
+#+LATEX_CLASS: article
+
+#+TITLE: Philosophy of Code
+#+AUTHOR: Michael Mattie
+
+* Philosophy of Code
+
+Rapid development of effective software requires the knowledge and
+experience to design, implement, deploy, and iterate on software
+technology.
+
+Along the way many projects ditch tooling and process for speed,
+thinking that this is the quickest way from: A -> B. The result is a
+mock-up at best that has to be rewritten on the investor or customer
+dime.
+
+At Gauge Security, we translate principles into products. Effective,
+reliable, and fast.
+
+We use innovations, automations, tooling, experience, and plain
+hard work to deliver as promised.
+
+* Experience
+
+Our Design Process is derived from extensive experience working
+for Fortune 10/100 Corporations:
+
+- ToolBuilders (Static Analysis of C, Large Scale C++)
+- OpenEye (Agile, Distributed Version Control)
+- Cobalt/ADP (Enterprise Scale Datbase Ingest)
+- Disney (Rapid Python Development)
+- Comcast (System Integration/Micro-Service Architecture)
+- Oracle (Cloud BackPlane/Security/AAA)
+- Amazon 1 (Global Network Capacity Mapping and Visulization)
+- Amazon 2 (AWS Security for Capital One)
+
+* System Design
+
+#+BEGIN_CENTER
+*/Vision - “Building the Impossible”/*
+#+END_CENTER
+
+System Design is a crucial aspect of building effective and flexible
+systems that can be modified and enhanced without rewrites of
+monolithic codebases.
+
+My major influence is the UNIX command line. Utilizing a standard data
+format highly configurable and narrowly scoped components are composed
+making it possible to achieve astounding power, flexibility, and
+re-use.
+
+Conversely, many poor designs revolve around slapping together a
+database that is shouldering a massive monolithic app. 
+
+Despite monolithic apps falling being replaced by Micro-Service
+architecture and Application Integration architecture - huge monoliths
+are still stood up today. Especially for "1.0" implementations.
+
+* System Design - Modern Architecture 
+
+#+BEGIN_CENTER
+*/"One bulls-eye is luck, three is skill"/*
+#+END_CENTER
+
+Vision is a articulation of goals and a refinement of the application
+scope using business language. The business case defines the scope,
+operations, and constraints of the solution.
+
+Being able to build something that resembles the vision, and doing it
+over and over again requires a process. A method for doing it right
+every time.
+
+When you need precision you make a "jig". A measuring stick, or frame
+for cutting the pieces or spacing out pieces. Every time you measure
+you get a different measurement. A jig is the same in every instance.
+
+For example if you are spacing rows for a machine to go down, and the
+end of the tape has 1/16" play, then after 16 rows your off near a
+full inch.
+
+Like a jig the software development process frames every aspect of the
+development and delivery of the software. If the process is ad-hoc,
+poorly defined, or not followed you can find yourself critically off
+at the end.
+
+If developers fail to uncover major issues in the design process, if
+developers make structural mistakes in implementation, if developers
+don't have the tooling to reliably push into production - then you
+face serious anomalies in the timeline. 
+
+Any one of these failures can lead to delayed deliveries, penalties,
+and could ultimately result in termination of projects, reputation
+damage, or lost clients.
+
+** RUP (Rational Unified Process)
+
+Rational Unified Process is the high level view of the development
+process. This is a fully iterative approach, which can work if the
+entities (which are deepest rooted dependencies) are encapsulated
+inside services that pass well defined and simple messages.
+
+This service architecture allows for rapid iteration within
+well-defined silos while maintaining the intergrity of the overall
+system. 
+
+Changes in the services have a low impact. Changes in the message
+passing or service scope ripple throughout the layers, and cause
+conflicts in the system and the developers.
+
+A process framework defining a staged delivery to expose issues as
+early as possible.
+
+- Inception - make a initial evaluation to determine the cost and
+  value of the project. It should make a business case of the  minimal viable
+  delivery definition through essential use cases.
+
+-	Elaboration - perform domain modeling and architecting. Produce a
+  integration test suite to shake out the service factoring and the
+  overall architecture. This is a iterative process.
+
+-	Construction - complete the implementation of the Use Cases.
+
+-	Transition - Final release work not in the scope of continuous delivery.
+
+Domain Language is where concepts are identified. If there is a
+troublesome area use domain language to pinpoint, dissect, and and
+re-arcticulate the design stumbling blocks.
+
+Designing is the practice of distilling a vision description down into
+the essential components and features of a successful system.
+Design's legacy is: eleganance, aesthetic, pragmatic, maintainable
+software.
+
+** Design
+
+#+BEGIN_CENTER
+*/“Weeks of Coding can save hours of Planning”/*
+#+END_CENTER
+
+Simplicity of design is first principles. The insights into the domain
+produce a model of the problem and a fully conceived solution.
+
+A CASE/DOMAIN iteration process is learning and refinement in
+nature. It is not a scribbling of ideas, but testing and stretching
+them to see if they fit the problem.
+
+*** USE CASE/DOMAIN modelling
+
+USE cases are designed as sequence diagrams showing the interaction
+between the user, the system, and the problem. The user interacts with
+the system, and the system interacts with the problem - or DOMAIN.
+
+*** Roles
+
+System Roles are built as state machines. Each state consists of a set
+of messages that can be sent from that state. Each response from the
+system or operation performed by the user is a potential response
+and/or transition to another state.
+
+In planning roles each role is a board, each state is represented by a
+ticket, and the messages as sub-tasks. Boards and tickets are for
+system planning, not time tracking and employee metrics.
+
+*** Messages
+
+Messages are transitive immutable entities, passed between components
+and users. They are in a Data Catalog which is a documentation of all
+the messages in a layer.
+
+*** Entities
+
+Entities are persistent state with a cohesive, complete, and minimal
+set of attributes. They are refined by BNF [[cite:&wikiBNF]] normalization
+where the narrow and precise scoping of the Entity is used for
+normalization.
+
+Entities never appear in the layer definitions as they are always
+encapsulated by services.
+
+** Summary
+
+The design process doesn't have to be slow. If it is slow then it won't be
+used. Looking at tools like markdown, plantuml, and mindmapping tools, a design
+can rapidly evolve.
+
+If it's slow your tools are in the way with too much formatting and
+styling.  Design docs can be primitve at first, and styled with fancy
+tools later for presentation.
+
+* Implementation
+
+Implementation is not a straight to code path, it involves a second
+phase of iteration: enriching the layers, services, and operations
+along cohesive encapsulation lines.
+
+** Service Factoring
+
+#+BEGIN_CENTER
+*/“Systemic Seperation of Concerns”/*
+#+END_CENTER
+
+Operations under the same “knows about” topic are gathered into a
+service that encapsulates the topic. It produces and consumes messages
+that soley reference entities and operations within it's scope.
+
+In a sequence diagram of the messaging between the services each
+service has a column.
+
+** Layers
+
+System layers are defined by a data catalog and relationships shared
+across the components and services. If it comes from the same data
+catalog it's in the same layer. Different catalog, different layer.
+
+*** App Layer
+
+The app layer is responsible for all the library, compotent, and
+service integrations, initialization, error handling, and shutdown.
+
+*** Domain Layer
+
+The Domain Layer should be a structure encompassing and modelling the
+full scope of the problem.
+
+The Domain layer is focused on representation, and it's parts are
+concerned with traversing, structuring, and partitioning the Problem
+Space.
+
+The Domain layer should fit on everything from a laptop for development,
+to pyspark clusters for large scale data processing.
+
+The structure of the Domain Layer should represent the real world
+relationships between the pieces of data. 
+
+A good example is the MacOS device model which has representations in
+a network graph for connectivity and in planes such as power
+management. Querying the device model is by passing a dictionary of
+attributes providing encapsulation.
+
+*** Technical Core
+
+The Technical Layer ties into both the Application Layer and the
+Domain Layer to provide the Business Logic and Algorithmic
+capabilities of the system.
+
+* Principles
+
+#+BEGIN_CENTER
+*/Principles are wisdom that when discarded produce a Pyrrhic victory/*
+#+END_CENTER
+
+** Twelve Factor App
+
+-	One Code Base in Version Control (This can be decomposed into
+  multiple repostories with advanced tooling capabilities) independent
+  of environments configurations, and dependencies.
+
+-	Explicit Dependencies and Dependency Isolation
+
+- Common code between repositories are packages, all dependencies are
+  declared down to the operating system later, with semantic
+  versioning package specification and static linking to the OS.
+
+- Config Values in Environment Variables. Config values are propagated
+  from the environment bound launcher into environment variables
+  consumed by the application processes.
+
+- Backing Services: All resources are abstracted as config bound
+  componets, local and remote.
+
+- Code and Build, bind environment config and build for release.
+
+- Stateless Processes. All processes contain no locally attached state,
+  all state is written to resources with ACID properties
+
+- Port Binding - no web server or reverse proxy. The app binds to a
+  bare port. No extra components are needed to run it.
+
+- Scale via Processes. Scale horizontally with processes.
+
+- Disposable Processes Make processes starting, stopping, and scaling
+  fast. make them disposable putting state in ACID resources. Death of
+  processes should not impact the system in any significant way.
+
+- Dev/Prod Parity: Keep Dev and Prod in sync so that changes can be
+  rapidly promoted to Prod with confidence.
+
+- Logs - Log to stdout: Log to stdout, use logging services to pick up
+  the stream and make it analyzable.
+- Admin via one-oﬀ programs and REPL’s. Glue together dashboards out
+  of logging services and dashboards.
+
+** Tests as Contracts
+
+Tests as contracts. Tests should reflect actual useful scenarios and
+not simply exercise coverage. Test the expected behavior of the
+interfaces on one level, and the performance on another.
+
+To make it organized, and even possible to auto-generate docs from the
+unit test code - make a test file for each operation being
+tested. Enumerate the cases in the file.
+
+Documentation should briefly describe what the behavior of the mode,
+and the circumstances and types of the errors.
+
+** Outsourcing
+
+Outsource anything outside of the Core Domain to libraries and
+services vastly accelerating development and the creation of value.
+If the problem is in another domain it probably should be outsourced,
+especially if it is in another technical domain.
+
+Beware of dependency hell by choosing libraries and services with
+extremely mature API’s with minimal sub-dependencies. Small libraries
+with narrow scope and functionality should be avoided.
+
+** submodules vs. packages
+
+Pull the sources for outsourcing into the service repositories as git
+submodules. Build packages and store in your own package repository so
+that the source, builds, and repeatable builds for the entire system
+is preserved.
+
+** Side-Effect Free
+
+Side Effect Free Functions: as many functions as possible should
+return a result, and have no other effect upon subsequent calls,
+or alter the outcomes of other function.
+
+This simplifies analysis, understanding, and eliminates vast numbers
+of diﬃcult to solve.
+
+** Assertions
+
+Assertions are Invariants that are like probes into the heart of the
+design and the code. Invariants should be used primarily in tests.
+well stated is single invariants or as predicate transformers
+[[cite:&predicateWiki]] stating the pre and post conditions of the
+function.
+
+** Simplify Associations
+
+Simplify Associations: Reduce connections and cardinality complexity
+of relationships with constraints and layers found in the deeper
+understanding of the problem domain.
+
+Use Stored Procedures or Object Relational Mappers to abstract
+Entities and Aggregates from the storage structure. This also
+abstracts storage quirks from the Technical Core layer.
+
+Stored Procedures enforce locking and return denormalized rows 
+for compound objects.
+
+** Factories
+
+Factories create complex or polymorphic objects. If the factory is for
+a object with persistent storage zero args should create a new object
+and keyword args should query for a existing object.
+
+Factories excel at encapsulating integrations and API's for components
+like databases, and REST API's.
+
+** Tests as contracts
+
+One of the main reasons why documentation is such a problem is drift,
+no one notices when the code changes, but the documentation
+doesn't. Attempts to integrate the two have been "Literate
+Programmming" by Knuth [[cite:&wikiLiterate]]
+
+The tools however were not time efficient enough due to the emphasis
+on typesetting. More recently markdown has emerged as a fast way of
+creating documents.
+
+Now there is a even better way that has evolved in Emacs. It is called
+org-mode and it allows for code blocks to be mixed with markdown like
+document syntax.
+
+Not only does it rapidly generate documentation, the code blocks can
+even be executed inside the org-mode document, or written to files.
+
+This allows for a new paradigm where the tests and the API
+documentation are the same document. The tests illustrate the API,
+verify the documentation, and "tangled" into files a test suite is
+generated.
+
+*** Structure
+
+The test-suite/API documentation has the structure of a document with
+a preamble introducing the API. Each operation in the API is a mixture
+of code and documentation. 
+
+Each Operation generates a test-suite file. In each operation test
+file the CASE's are enumerated exhaustively testing the code and
+validating the documentation.
+
+The result is a test-suite, and API documentation in sync.
+
+* My Readings
+
+Here is list of my most influential sources, with a short description
+of what they are, or the influence they had on me.
+
+** The 12 Factor App
+
+The 12 Factor app [[cite:&factor]] is a seminal document on Architecture
+and implementation of horizontal scaling Micro-Service Systems.  It's
+lessons are from the blood, sweat, and tears of years - if not
+decades - of writing scalable and maintainable systems.
+
+** Semantic Versioning
+
+Semantic Versioning [[cite:&semver]] is the state-of-the art in release
+practices for version formatting and the semantics of the version
+scheme.
+
+It's commentary on release practices is priceless.
+
+** Git Flow
+
+Git is powerful, but does not impose a Workflow. This has lead to a
+lot of chaos, but has also allowed for a lot of research into the best
+Workflows for version control.
+
+Git-Flow [[cite:&flow]] Is the best of the Workflows and is tooled as
+"git-flow" on most systems.  The combination of a well thought out,
+experience driven, tooled Workflow is a huge asset to any project.
+
+** Conventional Commits
+
+Most commit messages arise from a anarchy of practices leading
+to git logs that are difficult to understand and impossible
+to automate with tools.
+
+Convential Commits [[cite:&conventional]] provide a standard for different
+types of commits and what the types mean.  With git flow you can
+understand the logs easily and also you can use tools to process the
+logs.
+
+** Introduction to Algorithms
+
+MIT Introduction to Algorithms [[cite:&introduction]] is the definitive
+work on the most common algorithms. It is the ten-ton-hammer of
+algorithms with precise detail and thorough presentation of every
+algorithm. This belongs on every programmer's shelf.
+
+** Applied Cryptography
+
+Applied Cryptography [[cite:&schneier2017applied]] is the seminal text on
+cryptography theory, algorithms, and application.
+
+The principles are explained in a precise and lucid manner. Not a
+daily-driver for most programmers, but as a reference on cryptography
+it has no peers.
+
+** Design Patterns
+
+Design Patterns [[cite:&gamma1994design]] are definitely one of the most
+influental books on programming ever written. It introduces abstract
+definitions of powerful code mechanisms in a high level description
+This should be read cover-to-cover many times.
+
+** Domain-driven Design
+
+Domain-driven Design [[cite:&evans2004domain]] is a foundation
+of design principles for system design and process. It
+is a cover-to-cover read.
+
+** Logic in Computer Science
+
+Logic in Computer Science [[cite:&huth2004logic]]  deals with the modeling
+and reasoning about computer code and systems. This is
+a powerful book but very dense with predicate logic.
+
+** Structure and Interpretation of Computer Programs
+
+The original MIT intro to CompSci book [[cite:&abelson1996structure]] ss
+my bible. It's thorough presentation of programming fundamentals in
+the scheme language makes it a pleasant read. 
+
+It is a tour-de-force of fundamentals, and a fascinating treament of
+both functional and procedural programming.
+
+** The Art of Computer Programming
+
+Quite possibly the most famous series in programming. Written by Donald Knuth,
+typeset in Tex - a system created to typeset the book correctly, It is
+possibly the most correct text on programming.
+
+Knuth famously wrote checks to anyone who could find a mistake in the
+books. The checks were rarely cashed, they were one of the most
+prized awards in programming culture. The series is four volumes currently
+
+- Vol 1: Fundamental Algorithms [[cite:&knuth1998art]]
+- Vol 2: Seminumerical Algorithms [[cite:&knuth2014art]]
+- Vol 3: Sorting and Searching [[cite:&knuth1998art]]
+- Vol 4: Combinitorial Algorithms [[cite:&knuth2022art]]
+
+** The Structure of Scientific Revolutions
+
+This classic text [[cite:&kuhn2012structure]] by Kuhn seperates
+revolutionary ideas from incremental progress. It defines
+revolutionary changes as paradim shifts to new models. This classic
+pinpoints the tidal shifts in scientific thinking.
+
+** Unix Power Tools
+
+One of the most influential of my books Unix Power Tools
+[[cite:&powers2003unix]] . It teaches the command line by examples with as
+a teaching mechanism.
+
+If you learn by example, and want to deep dive into the command line
+this is the best book.
+
+** Hackers, Heroes of the Computer Revolution
+
+Steven Levy's [[cite:&levy2010hackers]] "Hackers" is an amazing
+presentation of the early MIT years of computer programming, personal
+computers, and early video game programming.
+
+An easy read, and a good one.
+
+** The Art of Unix Programming
+
+The Art of Unix Programming [[cite:&raymond2003art]] is a very influential
+book on designing systems the UNIX way and how to decompose complex
+behavior into simple parts.
+
+** The Cuckoo's Egg
+
+The Cuckoo's egg [[cite:&stoll2000cuckoo]] was my first introduction into the world of
+programming and UNIX. It inspired me to become a programmer.
+
+** The Design and Evolution of C++
+
+A lesser known work by Bjarne Stroustrup [[cite:&stroustrup1994design]],
+in this book he discusses the context and the decisions that drove the
+creation and evolution of C++. A must read for insight into the
+creative and design process behind software.
+
+** The Design of Every Day Things
+
+The Design of Every Day Things [[cite:&norman2013design]] spawned
+modern inteface design, and the rise of the product designer.
+A must read for programmers to create intuitive software.
+
+** The Soul of a New Machine
+
+The Soul of a New Machine [[cite:&kidder1997soul]] is a great real world
+example how a small nimble team using a simple clear vision and design
+can build a revolutionary product in a very short amount of time.
+
+#+print_bibliography:
+
+
