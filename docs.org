@@ -1,0 +1,16 @@
+#+LATEX_CLASS: article
+#+SETUPFILE: retro_dark.theme
+
+* Introduction
+
+Welcome to my Computer Science research and explorations. I have
+some papers, experiments, and analysis of development practices,
+tools, and algorithms.
+
+** Heap Sort
+
+Heap Sort is a interesting algorithm that uses binary trees to
+sort.
+
+[[file:src/heap_sort/doc.org][Heap Sort analysis]]
+
