@@ -1,7 +1,7 @@
 #+LATEX_CLASS: article
 
 #+TITLE: Algorithms: Design and Implementation
-#+AUTHOR: Michael Mattie
+#+AUTHOR: Mr. Mattie
 
 * Algorithms: Design and Implementation
 

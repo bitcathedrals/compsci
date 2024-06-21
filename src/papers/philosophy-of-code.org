@@ -1,7 +1,7 @@
 #+LATEX_CLASS: article
 
-#+TITLE: Philosophy of Code
-#+AUTHOR: Michael Mattie
+#+TITLE: Mattie Philosophy of Code
+#+AUTHOR: Mr. Mattie
 
 * Philosophy of Code
 
