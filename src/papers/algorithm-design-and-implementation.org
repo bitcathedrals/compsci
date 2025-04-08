@@ -25,14 +25,39 @@ finding all the ways the algorithm will be used and stretched. The
 code is intuitive once all the facets of the problem domain have been
 discovered.
 
+* Requirements 
+#+BEGIN_CENTER
+/State & Clarify/ – Deep Comprehension Modeling
+#+END_CENTER
+
+Study the given requirements with deep comprehension, looking to find
+a singular explanation model for how the results can be reached from
+the description details. Make sure that every word or apparent quirk,
+ambiguity, anomoly, or lack of clarity in your understanding of the
+domain is worked out for every part of the model.
+
+Use the domain terminology exclusively for reading, writing, and
+modeling the requirements.
+
+Model every entity in the description carefully, being very wary of
+premature optimization. This initial model is for proving correctness,
+and will be used to verify correctness of optimizations further in the
+development process.
+
 * Definition
 
-Defining your goals, your problem, and clearly stating your
-assumptions will do more for your design process than any other
-step. Your code reflects your assumptions more than your skill in most
-cases.
+Refine your domain model into a computational model, using
+computational terms with entities transformed into data structures or
+objects having one or more invariants, types, and operations.
 
-** SCENARIOS 
+Define your goals in terms of metrics,  and clearly state your assumptions.
+
+Your requirements and definition process is foundational to your
+success, and the remaining process is more derivative than
+architectural. Your code reflects these assumptions more than your
+skill in most cases.
+
+* SCENARIOS 
 #+BEGIN_CENTER
 /State & Clarify/ – CASES and EXPECTATIONS
 #+END_CENTER
