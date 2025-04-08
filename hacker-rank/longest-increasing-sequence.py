@@ -1,71 +1,78 @@
-#!/bin/python3
+#!/bin/python
 
-import os
+# Complete the function below.
 
-#
-# Complete the 'longestIncreasingSubsequence' function below.
-#
-# The function is expected to return an INTEGER.
-# The function accepts INTEGER_ARRAY arr as parameter.
-#
+from collections import namedtuple
 
-def longestIncreasingSubsequence(arr):
-    sequence = []
+SubSeq = namedtuple('SubSeq',
+                    ['last',
+                    'count'])
 
-    def place_in_sequence(value):
-        size = len(sequence)
+def  findLIS(s):
 
-        if size < 1:
-            sequence.append(value)
-            return
+    # we are going to keep a two dimensional array to track all the possible
+    # sub-sequences as we go
 
-        backward = size - 1
+    sequences = []
 
-        if value == sequence[backward]:
-            return
+    def update_sub(sub, value):
+        return SubSeq(
+                        last=value,
+                        count=sub.count + 1
+                    )
 
-        if value > sequence[backward]:
-            sequence.append(value)
-            return
+    def find_sequences(value):
+        this_end = len(sequences)
 
-        while backward > 0:
-            if value == sequence[backward - 1]:
-                return
-                
-            if value > sequence[backward - 1]:
-                backward = backward - 1
-            else:
-                break
+        sequences.append(SubSeq(last=value, count=1))
 
-        sequence.insert(backward, value)
+        # traverse is walking across the sequences
+        traverse = 0
 
-    length = len(arr)
+        while traverse < this_end:
+            this_value = sequences[traverse].last
 
-    if length == 0:
-        return 0
+#            print(f'this_value is {this_value}, value is {value}')
+            # skip equals
+            if value == this_value:
+                pass
+
+            elif value > this_value:
+#               print(f'updating traverse {traverse}, this_value {this_value}, value {value}')
+
+                sequences[traverse] = update_sub(sequences[traverse], value)
+
+            traverse = traverse + 1
+
+    def find_longest_sequence(data):
+        [find_sequences(x) for x in data]
+        traverse = 0
+
+        longest = 0
+
+        sequence_size = len(sequences)
+#        print(f'sequence size is: {sequence_size} sequences = {sequences}')
+
+        while traverse < sequence_size:
+            if sequences[traverse].count > longest:
+                longest = sequences[traverse].count
+
+            traverse = traverse + 1
+
+        return longest
+
+#    print(f's = {s}')
+
+    return find_longest_sequence(s)
+
+_s_cnt = int(input())
+_s_i=0
+_s = []
+while _s_i < _s_cnt:
+    _s_item = int(input());
+    _s.append(_s_item)
+    _s_i+=1
 
 
-    while index < length:
-        place_in_sequence(arr[index])
-        index = index + 1
-
-    print(f'sequence is: {sequence}')
-    return len(sequence)
-
-
-if __name__ == '__main__':
-    fptr = open(os.environ['OUTPUT_PATH'], 'w')
-
-    n = int(input().strip())
-
-    arr = []
-
-    for _ in range(n):
-        arr_item = int(input().strip())
-        arr.append(arr_item)
-
-    result = longestIncreasingSubsequence(arr)
-
-    fptr.write(str(result) + '\n')
-
-    fptr.close()
+res = findLIS(_s);
+print(res)
