@@ -1,7 +1,7 @@
 #+LATEX_CLASS: article
 
 #+TITLE: Algorithms: Design and Implementation
-#+AUTHOR: Michael Mattie
+#+AUTHOR: Mr. Mattie
 
 * Algorithms: Design and Implementation
 
@@ -9,46 +9,82 @@
 *Correct Thinking leads to correct Code!*
 #+END_CENTER
 
-Algorithms, even the ones that seem simple can be very difficult to
+Algorithms, even the ones that seem simple, can be very difficult to
 design and implement. Purely technical algorithms frequently have
 mistakes in them until they have been debugged over a significant
 period of time. Business Logic algorithms are unique to the domain
-and there is little guidance to help the developer.
+and there is little guidance there to help the developer.
 
 The biggest failing is not one of coding, but rather a failure of
-imagination to conceive of all the scenarios that the algorithm
+imagination, to conceive of all the scenarios that the algorithm
 is executed in. Not realizing that a list might be empty, or
 a input not supplied can wreck an algorithm.
 
 We will go through a systematic process that is a discovery processs,
-discovering all the ways the algorithm will be used and stretched. The
+finding all the ways the algorithm will be used and stretched. The
 code is intuitive once all the facets of the problem domain have been
 discovered.
 
-** Definition
-
-Defining your goals, your problem, and clearly stating your
-assumptions will do more for your design process than any other
-step. Your code reflects your assumptions more than your skill in most
-cases.
-
-*** SCENARIOS 
+* Requirements 
 #+BEGIN_CENTER
-/State & Clarify/ – The context of CASES and EXPECTATIONS
+/State & Clarify/ – Deep Comprehension Modeling
 #+END_CENTER
 
-(Inputs, Expections, Outputs). The Inputs, Outputs, and Expectations
-are the CASES of the algorithm. The EXPECTATIONS are what the
-algorithm should do in that CASE. Scenarios are the situational and
-practical constraints surrounding the CASES. The Expectations are
-usually a "result", but it can include side-effects: changing the
-environment.
+Study the given requirements with deep comprehension, looking to find
+a singular explanation model for how the results can be reached from
+the description details. Make sure that every word or apparent quirk,
+ambiguity, anomoly, or lack of clarity in your understanding of the
+domain is worked out for every part of the model.
 
-It is important to ask questions and clarify these scenarios. They are
-the foundations of the entire process and a mistake here will ripple
-all the way to implementation in a very costly way.
+Use the domain terminology exclusively for reading, writing, and
+modeling the requirements.
 
-*** BEHAVIOR
+Model every entity in the description carefully, being very wary of
+premature optimization. This initial model is for proving correctness,
+and will be used to verify correctness of optimizations further in the
+development process.
+
+* Definition
+
+Refine your domain model into a computational model, using
+computational terms with entities transformed into data structures or
+objects having one or more invariants, types, and operations.
+
+Define your goals in terms of metrics,  and clearly state your assumptions.
+
+Your requirements and definition process is foundational to your
+success, and the remaining process is more derivative than
+architectural. Your code reflects these assumptions more than your
+skill in most cases.
+
+* SCENARIOS 
+#+BEGIN_CENTER
+/State & Clarify/ – CASES and EXPECTATIONS
+#+END_CENTER
+
+(Contexts & Inputs, Expections & Qualifications, Outputs). 
+
+CASES are Contexts and Inputs. Contexts are factors or constraints in
+the case that shape the case beyond the simple action or input that is
+fed into the algorithm. Inputs are events or data that are fed into
+the algorithm.
+
+The combination of Context and Inputs allow the algorithm designer to
+craft an effective expectation of BEHAVIOR that is complete and
+satisfies the CASE.
+
+Expectations and Qualifications are the definition of BEHAVIOR that
+that correctly solve the CASE. The Expectations are what the algorithm
+should compute, do, or return. The Qualifications are constraints on
+the behavior such as how fast it must solve the problem, or how many
+solutions it should produce.
+
+The outputs are what the algorithm should return. Even if the
+algorithm is entirely side-effects it should probably return an error
+code. Defining what the algorithm returns clearly is vital to
+understanding the problem, documenting, and testing it.
+
+** BEHAVIOR
 #+BEGIN_CENTER
 /State & Clarify/
 #+END_CENTER
@@ -57,10 +93,10 @@ BEHAVIOR is the actions that lead to the EXPECTATIONS being met by the
 algorithm. It is vital to clarify the behavior and make sure it covers
 all facets of the environment, cases, and results.
 
-It is important to clarify behavior because if it doesnt thread
+It is important to clarify behavior because if behavior doesn't thread
 through the scenarios it will result in a broken implementation.
 
-*** INPUTS 
+** INPUTS?
 #+BEGIN_CENTER
 /State & Clarify/ - Types and Scale
 #+END_CENTER
@@ -71,7 +107,7 @@ thousand elements is a very different from designing for one million
 elements. A thousand will fit easily to memory, a million elements is
 a different design entirely.
 
-*** RETURN  
+** RETURN?
 #+BEGIN_CENTER
 /State & Clarify/ - Types and Scale
 #+END_CENTER
@@ -81,7 +117,7 @@ The types and results that EXPECTATIONS requires are crucial to the
 design process. Early in the computation the assembly of output should
 begin.
 
-*** CHANGE
+** CHANGE?
 #+BEGIN_CENTER
 /State & Clarify/ - Before and After
 #+END_CENTER
@@ -92,20 +128,33 @@ if it is the EXPECTATION then it must be done well.
 
 If a change must be made it is best to make the algorithm idempotent,
 or where repeated calls have the same result. For example: a light
-button as a toggle will turn on/off the lights every time it's
-pressed. A switch or paddle pressed "off" will result in off every
-time. That is idempotent.
+button as a toggle will alternate on/off the lights every time it's
+pressed. This is confusing since the initial state determines the
+result. A switch instead, will turn the light off every time it is
+pressed in the off direction. That is idempotent.
 
-** Design (Iteration)
+* Sketch the Code
 
-*** CASES and Experiments
+Sketch the code in functions, loops, with comments on purpose and
+O-notation complexity
+
+1. *Initialize*: establish a return value, empty containers over nulls
+2. *Terminate*: determine the base case. When is it done?
+3. *First, Common, Last Cases*: The basic sequence of the algorithm
+4. *Corner*: cases 
+5. *Input Validation*: System errors, stale state, deadlocks, and sync errors, timeouts
+6. *State*: initialize, update, delete [[cite:&SICPcostOfAssignment]]
+
+* Design (Iteration)
+
+** CASES and Experiments
 
 Brainstorm the different CASES in the context of an
 environment. Conduct thought experiments, Give up on bad ideas
 quickly. See if the CASES enumerate all the scenarios, how common they
 are: common case, corner case.
 
-*** Operations (API) 
+** Isolate Operations
 #+BEGIN_CENTER
 Maximize Idempotent side-effect free operations [[cite:&SICPcostOfAssignment]]
 #+END_CENTER
@@ -114,15 +163,18 @@ Breakdown the cases into functions, and try and maximize side-effect free
 idempotent functions. Where there is state handle it carefully defining
 the entire life-cycle of the state.
 
-*** Isolate Operations (API)
+** Message Passing (API)
 #+BEGIN_CENTER
-Functions are isolated, minimal sharing of state between functions (API)
+APIs are message passing between functionally isolated components (API)
 #+END_CENTER
 
-Try and avoid cross-connection between functions, so they can be
-tested in isolation and more easily understood than tangled functions.
+Modules are data coupled, or related functions. API's pass abstract
+messages between modules that are declarative or events in nature that
+execute operations without knoweldge of how those operations are
+built.
 
 ** Paradigm
+
 #+BEGIN_CENTER
 /Solution Comprehension/
 #+END_CENTER
@@ -275,18 +327,6 @@ Streams [[cite:&SICPstreams]] are a finite sequence of discrete elements
 of the same type processed in a linear sequence of operations. They
 are produced by a generator function which allows a subset of the
 stream to be computed.
-
-* Sketch the Code
-
-Sketch the code in functions, loops, with comments on purpose and
-O-notation complexity
-
-1. *Initialize*: establish a return value, empty containers over nulls
-2. *Terminate*: determine the base case. When is it done?
-3. *First, Common, Last Cases*: The basic sequence of the algorithm
-4. *Corner*: cases 
-5. *Input Validation*: System errors, stale state, deadlocks, and sync errors, timeouts
-6. *State*: initialize, update, delete [[cite:&SICPcostOfAssignment]]
 
 * Data Structures
 

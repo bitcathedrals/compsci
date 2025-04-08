@@ -1,0 +1,6 @@
+(define (return-multiplication x y)
+  (* x y))
+
+(return-multiplication 4 4)
+
+

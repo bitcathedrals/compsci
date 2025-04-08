@@ -1,7 +1,7 @@
 #+LATEX_CLASS article
 
 #+TITLE: Evolution of Code
-#+AUTHOR: Michael Mattie
+#+AUTHOR: Mr. Mattie
 
 * Schools of Thought
 

@@ -1,0 +1,115 @@
+(define alphabet-length 27)
+
+(define make-wiring (plaintext ciphertext)
+  ; make-wiring <plaintext:string> <ciphertext:string>
+  ;
+  ; make the wiring for a rotor or a plug-board. turned
+  ; is a hashtable for encryption and decryption.
+  ;
+  ; -> encrypt-table . decrypt-table
+  (assert (equal? (length plaintext) (length ciphertext)))
+
+  (let
+    ((encrypt-table (make-hashtable alphabet-length 'equal))
+     (decrypt-table (make-hashtable alphabet-length 'equal))
+     (position 0))
+
+    (string-for-each
+      (lambda (char)
+        (hashtable-set! ciphertext-table char (string-ref ciphertext position))
+        (hashtable-set! plaintext-table (string-ref ciphertext position) char)
+
+        (set! position (+ position 1)) )
+      plaintext)
+
+    (cons encrypt-table decrypt-table) ))
+
+(define wiring-encrypt 'car)
+(define wiring-decrypt 'cdr)
+
+(define rotor-wheel 'car)
+(define rotor-wiring 'cdr)
+
+(define rotor-position 'car)
+(define rotor-mechanism 'cdr)
+
+(define (make-rotor plaintext ciphertext)
+  ; make-rotor <wheel:make-wiring> <plaintext:string> <ciphertext:string>
+  ; -> (<position:number> . (<rotor order:string> . <ciphertable:make-wiring>)
+  ;
+  ; make a rotor mapping from plaintext->ciphertext, and ciphertext->plaintext
+  ; with the mapping being keyed by the order. The position in the order is
+  ; the key for the mapping. see rotor-cipher/rotor-decipher for a complete
+  ; explanation.
+  (cons 0 (cons
+            plaintext
+            (make-wiring plaintext ciphertext))) )
+
+(define (rotor-position rotor)
+  ; rotor-position <rotor:make-wiring>
+  ; -> <current rotor position:number>
+
+  ; return the current rotor position as a number.
+  (car rotor))
+
+(define (rotor-increment rotor)
+  ; rotor-increment <rotor:make-wiring>
+  ;
+  ; increment the rotor, when the rotor is >= alphabet
+  ; length wraparound to zero.
+  (let
+    ((position (+ (rotor-position rotor) 1)))
+
+    (when (>= position alphabet-length)
+      (set! position 0))
+
+    (set-car! rotor position)
+
+    rotor))
+
+(define (rotor-decrement rotor)
+  ; rotor-decrement <rotor:make-wiring>
+  ;
+  ; decrement the rotor, when the rotor is < 0
+  ; wrap to alphabet-length - 1
+  (let
+    ((position (- (rotor-position rotor) 1)))
+
+    (when (< position 0)
+      (set! position alphabet-length - 1))
+
+    (set-car! rotor position)
+
+    rotor))
+
+(define (rotor-encipher character rotor)
+  (let
+    ((rotor-key (string-ref (car (cdr rotor)) (car rotor)))
+     (rotor-wiring (cdr (cdr rotor))))
+
+    (let
+      ((encipher (wiring-encrypt rotor-wiring)))
+
+      (rotor-increment rotor)
+
+      (hashtable-ref encipher rotor-key)) ))
+
+(define (rotor-decipher rotor)
+  (let
+    ((rotor-key (string-ref (car (cdr rotor)) (car rotor)))
+     (rotor-wiring (cdr (cdr rotor))))
+
+    (let
+      ((decipher (wiring-decrypt rotor-wiring)))
+
+      (rotor-decrement rotor)
+
+      (hashtable-ref decipher rotor-key)) ))
+
+(define (make-enigma rotor-1 rotor-2 rotor-3 rotor-4 rotor-5)
+  (let
+    ((enigma (cons 0 (list rotor-1 rotor-2 rotor-3 rotor-4 rotor-5))))
+
+
+    ))
+

@@ -1,7 +1,7 @@
 #+LATEX_CLASS: article
 
-#+TITLE: Philosophy of Code
-#+AUTHOR: Michael Mattie
+#+TITLE: Mattie Philosophy of Code
+#+AUTHOR: Mr. Mattie
 
 * Philosophy of Code
 
@@ -45,16 +45,16 @@ systems that can be modified and enhanced without rewrites of
 monolithic codebases.
 
 My major influence is the UNIX command line. Utilizing a standard data
-format highly configurable and narrowly scoped components are composed
-making it possible to achieve astounding power, flexibility, and
-re-use.
+format highly configurable and narrowly scoped components are
+composed - making it possible to achieve astounding power,
+flexibility, and re-use.
 
 Conversely, many poor designs revolve around slapping together a
 database that is shouldering a massive monolithic app. 
 
-Despite monolithic apps falling being replaced by Micro-Service
-architecture and Application Integration architecture - huge monoliths
-are still stood up today. Especially for "1.0" implementations.
+Despite monolithic apps being replaced by Micro-Service architecture
+and Application Integration architecture - huge monoliths are still
+stood up today. Especially for "1.0" implementations.
 
 * System Design - Modern Architecture 
 
@@ -107,8 +107,9 @@ Changes in the services have a low impact. Changes in the message
 passing or service scope ripple throughout the layers, and cause
 conflicts in the system and the developers.
 
-A process framework defining a staged delivery to expose issues as
-early as possible.
+Each of the services perform staged deliveries, allowing the overall
+system to be a staged delivery model. This builds and exercises the
+entire delivery toolchain and the deploy process.
 
 - Inception - make a initial evaluation to determine the cost and
   value of the project. It should make a business case of the  minimal viable
@@ -257,9 +258,12 @@ capabilities of the system.
 
 -	Explicit Dependencies and Dependency Isolation
 
-- Common code between repositories are packages, all dependencies are
-  declared down to the operating system later, with semantic
-  versioning package specification and static linking to the OS.
+- Code sharing between repositories is packages. All dependencies
+  of each service are checked in as git submodules. All code in
+  the repository is built into the package for that repository.
+
+  submodule dependencies including executables are static linked
+  down to the OS layer.
 
 - Config Values in Environment Variables. Config values are propagated
   from the environment bound launcher into environment variables
@@ -353,12 +357,9 @@ for compound objects.
 
 ** Factories
 
-Factories create complex or polymorphic objects. If the factory is for
-a object with persistent storage zero args should create a new object
-and keyword args should query for a existing object.
-
-Factories excel at encapsulating integrations and API's for components
-like databases, and REST API's.
+Factories are for the construction of compound objects, objects with
+post-construction intialization, or selecting between objects with
+different class lineage, but the same API.
 
 ** Tests as contracts
 
@@ -390,7 +391,7 @@ a preamble introducing the API. Each operation in the API is a mixture
 of code and documentation. 
 
 Each Operation generates a test-suite file. In each operation test
-file the CASE's are enumerated exhaustively testing the code and
+file the CASE's are enumerated exhaustively, testing the code and
 validating the documentation.
 
 The result is a test-suite, and API documentation in sync.
@@ -423,7 +424,7 @@ Workflows for version control.
 
 Git-Flow [[cite:&flow]] Is the best of the Workflows and is tooled as
 "git-flow" on most systems.  The combination of a well thought out,
-experience driven, tooled Workflow is a huge asset to any project.
+experience driven, powerful paradigm is a huge asset to any project.
 
 ** Conventional Commits
 
