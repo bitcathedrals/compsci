@@ -91,7 +91,18 @@ difficult to test, maintain, and change due to the diffusion of direct
 consumption throughout the consumer. For these reasons it should not
 be chosen lightly.
 
-*** Dependency Inversion [[cite:&DependencyInversion]]
+*** Dependency Inversion
+
+**** Citations
+
+- [[cite:DependencyInversion][DI General]] 
+- [[cite:DependencyInjectionPython][Python DI]] 
+- [[cite:DependencyInjectionC++][DI C+]]
+
+**** Links
+
+- [[https://python-dependency-injector.ets-labs.org/introduction/di_in_python.html][DI in Python]]
+- [[https://github.com/google/fruit/wiki][Fruit: Google DI for C++]]
 
 For intra-module coupling that does not rely on the consumer creating
 API types, Where a Singleton in the module API, or a Singleton that
@@ -122,7 +133,7 @@ interfaces.
 
 When this technique is used there is no need for extensive and
 complicated mocking for testing, use is well defined, configuration
-and construction is implemeneted in one place, instead of fanning out
+and construction is implemeneted in one place; instead of fanning out
 throughout the consumer.
 
 The code is easily written, maintained, changed, and tested.
@@ -168,6 +179,7 @@ thorough. Fuzzing is helpful for spotting corner cases that have been
 missed by pure analytical test cases.
 
 * SCENARIOS 
+
 #+BEGIN_CENTER
 /State & Clarify/ – CASES and EXPECTATIONS
 #+END_CENTER
@@ -205,7 +217,7 @@ knowing the beginning and the end.
 
 *** CHANGE?
 #+BEGIN_CENTER
-/State & Clarify/ - Before and After [[cite:&SICPcostOfAssignment]]
+/State & Clarify/ - Before and After [[cite:SICPcostOfAssignment][SICP Cost of assignment]]
 #+END_CENTER
 
 Sometimes the algorithm must make a scoped and persistent change in
@@ -214,11 +226,11 @@ implementation standpoint, but if it is the EXPECTATION then it must be
 done well.
 
 A good way of providing some formalism to describing state changes is
-Predicate Transformers [[cite:&PredicateTransformers]] by _Edsgar Dijkstra_
-that have a pre-assertion, the change, and then a post-assertion of
-what the state looks like before, changed, and after. This level of
-formalism is not usually necessary unless you are dealing with complex
-state change issues like parallelism.
+Predicate Transformers [[cite:PredicateTransformers][Predicate Transformers]] 
+by _Edsgar Dijkstra_ that have a pre-assertion, the change, and then 
+a post-assertion of what the state looks like before, changed, and after. 
+This level of formalism is not usually necessary unless you are dealing with 
+complex state change issues like parallelism.
 
 If a change must be made it is best to make the algorithm idempotent,
 or where repeated calls have the same result. For example: a light
@@ -260,7 +272,7 @@ purpose and O-notation complexity
 3. *First, Common, Last Cases*: The basic sequence of the algorithm
 4. *Corner*: cases 
 5. *Input Validation*: events, values, completeness, and ranges
-6. *State*: initialize, update, delete [[cite:&SICPcostOfAssignment]], and lifetime.
+6. *State*: initialize, update, delete, and lifetime.
 
 * Design (Iteration)
 
@@ -276,7 +288,7 @@ have no properties that are not intrinsic to the type value semantics.
 
 ** Isolate Operations
 #+BEGIN_CENTER
-Maximize Idempotent side-effect free operations [[cite:&SICPcostOfAssignment]]
+Maximize Idempotent side-effect free operations [[cite:SICPcostOfAssignment][SICP Cost of assignment]]
 #+END_CENTER
 
 Breakdown interaction of types into paradigm derived operations, and
@@ -288,6 +300,7 @@ entities.
 #+BEGIN_CENTER
 Sets of interrelated types and operations that share resources are Modules
 #+END_CENTER
+
 
 Modules are are interrelated types that construct each other, and
 share resources. If a type can stand independently it belongs
@@ -333,7 +346,7 @@ the elements.
 Define the base case or *termination* as return of the solution that
 unwinds the recursion.
 
-*** Divide & Conquer [[cite:&IntroDivideAndConquer]] 
+*** Divide & Conquer [[cite:IntroDivideAndConquer][Intro to Divide and Conquer]]
 
 \begin{equation}
 \theta (n * \log_n)
@@ -356,14 +369,14 @@ Divide and conquer is also a natural fit with parallel implementations.
 Dynamic Programming uses a technique of caching answers to frequently
 computed problems.
 
-Memoization [[cite:&IntroMemoization]] is a powerful technique and
-in Python the "functools" package has a LRU [[cite:&PythonLRU]]
+Memoization [[cite:IntroMemoization][Memoization]] is a powerful technique and
+in Python the "functools" package has a LRU [[cite:PythonLRU][Python LRU]]
 
 *** Linguistic (DSL)
 
 DSL stands for Domain Specific Languages. Thes can be simple
 declarative language processors, or full blown domain specific
-languages like "R" [[cite:&WikiR]]. They can be used to define complex
+languages like "R" [[cite:WikiR][R language]]. They can be used to define complex
 problems, and through the language implement a powerful and flexible
 solver.
 
@@ -371,14 +384,14 @@ solver.
 
 Query Languages like SQL can go beyond transactional into the space of
 analytical queries either providing processing of data, or even
-computations such as "GROUP BY" and MIN and MAX in SQL [[cite:&WikiSQL]].
+computations such as "GROUP BY" and MIN and MAX in SQL [[cite:WikiSQL][SQL Introduction]].
 
 The underlying model behind relational databases is the Relational
-Algebra [[cite:&codd2021relational]]
+Algebra [[cite:codd2021relational][Codd Relational Paper]]
 
 *** Logic
 
-Logic systems are basically rule systems like Prolog [[cite:&WikiProlog]]
+Logic systems are basically rule systems like Prolog [[cite:WikiProlog][Prolog Introduction]]
 They are used in mathematical and logic applications. Their solution
 finding approach can also be useful in solving difficult problems like
 cross-wiring network links for redundancy and expert systems.
@@ -425,7 +438,7 @@ min/max style answers.
 
 Greedy algorithms, like the parser compiler packer function I wrote
 in my Emacs Parser Compiler used a greedy technique with
-packing to maximally fill functions with code [[cite:&MattieParser]].
+packing to maximally fill functions with code [[cite:MattieParser][Mattie ELisp Parser Compiler]].
 
 *** Lazy Programming
 
@@ -437,12 +450,12 @@ a compact single value generator.
 
 *** Parallel Programming
 
-Parallel programming cite:&ParallelAlgorithms is a technique
+Parallel programming [[cite:ParallelAlgorithms][Parallel Algorithms]] is a technique
 implemented in hardware with things like hyperthreading and multiple
 cores. Even basic functions like add instructions can be implemented
 in parallel.
 
-Fundamentally parallel algorithms [[cite:&ParallelGraphModel]]
+Fundamentally parallel algorithms [[cite:ParallelGraphModel][Parallel Graph Model]]
 exploit the ability of systems and software to execute two or more
 pieces of code simultaneously.
 
@@ -466,7 +479,7 @@ memory.
 
 *** Streams 
 
-Streams [[cite:&SICPstreams]] are a finite sequence of discrete elements
+Streams [[cite:SICPstreams][SICP Stream Model]] are a finite sequence of discrete elements
 of the same type processed in a linear sequence of operations. What
 makes streams unique is that all of the types are consumers of the
 same stream type and are producers as well allowing them to be
@@ -553,7 +566,7 @@ purpose and O-notation complexity
 3. *First, Common, Last Cases*: The basic sequence of the algorithm
 4. *Corner*: cases 
 5. *Input Validation*: events, values, completeness, and ranges
-6. *State*: initialize, update, delete [[cite:&SICPcostOfAssignment]], and lifetime.
+6. *State*: initialize, update, delete, and lifetime.
 
 ** Test/Debug
 
