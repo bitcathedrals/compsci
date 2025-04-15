@@ -1,9 +1,9 @@
 #+LATEX_CLASS: article
 
-#+TITLE: Mattie System Implementation Process
+#+TITLE: Comprehensive Implementation Process
 #+AUTHOR: Mr. Mattie
 
-* Philosophy of Code
+* A Comprehensive System ImplementationProcess
 
 Rapid development of effective software requires the knowledge and
 experience to design, implement, deploy, and iterate a development
@@ -14,8 +14,9 @@ thinking that this is the quickest way from: A -> B. The result is a
 mock-up at best that has to be rewritten on the investor or customer
 dime.
 
-I prefer a lightweight tools, and consistent development process that
-translates principles into products. Effective, reliable, and fast.
+I prefer few, and lightweight tools, with a consistent development
+process that translates principles into products. Effective, reliable,
+and fast.
 
 #+BEGIN_CENTER
 */Vision - “Building the Impossible”/*
@@ -26,14 +27,14 @@ systems that can be modified and enhanced without rewrites of
 monolithic codebases.
 
 My major influence is the UNIX command line. Utilizing a standard data
-format highly configurable and narrowly scoped components are
+format, highly configurable and narrowly scoped components are
 composed - making it possible to achieve astonishing power,
 flexibility, and re-use.
 
 Conversely, many poor designs revolve around slapping together a
 database that is shouldering a massive monolithic app. 
 
-Despite monolithic apps being replaced by Micro-Service architecture
+Despite monolithic apps being replaced by Micro-Service architecture,
 and Application Integration architecture - huge monoliths are still
 stood up today. Especially for "1.0" implementations.
 
@@ -50,16 +51,6 @@ operations, and constraints of the solution.
 Being able to build something that resembles the vision, and doing it
 over and over again requires a process. A method for doing it right
 every time.
-
-When you need precision you make a "jig". A measuring stick, or frame
-for cutting the pieces or spacing out pieces. Every time you measure
-with a tape you get a different measurement. A jig is the same in
-every instance.
-
-Like a jig the software development process frames every aspect of the
-development and delivery of the software. If the process is ad-hoc,
-poorly defined, or not followed, you can find yourself critically off
-at the end.
 
 If developers fail to uncover major issues in the design process, if
 developers make structural mistakes in implementation, if developers
@@ -95,7 +86,8 @@ entire delivery toolchain and the deploy process.
                 factoring and the overall architecture. This is a 
                 iterative process.
 
-- construction - complete the implementation of the services
+- construction - complete the implementation of the services. This 
+                 is a iterative process.
 
 - Transition - Final release work not in the scope of continuous delivery.
 
@@ -159,9 +151,9 @@ The design process doesn't have to be slow. If it is slow then it
 won't be used. Looking at tools like markdown, plantuml, and
 mindmapping tools, a design can rapidly evolve.
 
-If it's slow your tools are in the way with too much formatting and
-styling.  Design docs can be primitve at first, and styled with fancy
-tools later for presentation.
+If it's slow your tools are in the way, with too much formatting and
+styling, and rearranging. Design docs can be primitve at first, and
+styled with fancy tools later for presentation.
 
 * Implementation
 
@@ -255,7 +247,7 @@ capabilities of the system.
 - Port Binding - no web server or reverse proxy. The app binds to a
   bare port. No extra components are needed to run it.
 
-- Scale via Processes. Scale horizontally with processes.
+- Scale via Service Processes horizontally.
 
 - Disposable Processes Make processes starting, stopping, and scaling
   fast. make them disposable putting state in ACID resources. Death of
