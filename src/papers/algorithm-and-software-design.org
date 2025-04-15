@@ -61,7 +61,7 @@ of overloading operators facilitates an intuitive, logical, and well
 understood way of using the types.
 
 Designing types, with value semantics expressed in interrelated
-operations, organized along paradigm lines, build intuitive use and
+operations, organized along paradigm lines, builds intuitive use and
 composition.
 
 Types and operations that are intrinsicly interrelated, or tied to
@@ -120,8 +120,8 @@ needed to construct resource objects such as Database objects, or OS
 objects.
 
 Those resource objects would use the configuration objects for
-instantiation, and as a singleton into the resource can be easily
-injected wherever it is needed.
+instantiation, and as singletons into the resource, they can be
+easily injected wherever it is needed.
 
 Instead of orchestrating the construction of a resource type, the
 consumer would use it through an abstract interface, and would receive
@@ -151,7 +151,7 @@ in an API object to process the message into the system.
 
 ** Testing
 
-Testing solutions is vital as any code of significant complexity is
+Testing solutions is vital, as any code of significant complexity is
 broken as first conceived.
 
 Testing can be challenging and labor intensive when the type and
@@ -288,7 +288,7 @@ have no properties that are not intrinsic to the type value semantics.
 
 ** Isolate Operations
 #+BEGIN_CENTER
-Maximize Idempotent side-effect free operations [[cite:SICPcostOfAssignment][SICP Cost of assignment]]
+Maximize Idempotent side-effect free operations [[cite:SICPcostOfAssignment][SICP Cost of Assignment]]
 #+END_CENTER
 
 Breakdown interaction of types into paradigm derived operations, and
